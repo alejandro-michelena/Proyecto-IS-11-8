@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VITA-SUPPS - Registro de Usuario</title>
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <main class="contenedor-pantalla">
+        
+        <div class="contenedor-logo">
+            <div class="icono-logo">
+                <i class="fa-solid fa-leaf"></i>
+            </div>
+            <h1 class="texto-logo">VITA-SUPPS</h1>
+        </div>
+
+        <div class="tarjeta-login">
+            <h2 class="titulo-login">Crear Cuenta</h2>
+
+            <form action="#" method="POST" class="formulario-login">
+                
+                <div class="grupo-formulario">
+                    <label for="nombre" class="etiqueta">Nombre Completo</label>
+                    <div class="contenedor-entrada">
+                        <i class="fa-solid fa-id-card icono-izquierdo"></i>
+                        <input type="text" id="nombre" name="nombre" class="campo-entrada" placeholder="Tu nombre y apellido" required>
+                    </div>
+                </div>
+
+                <div class="grupo-formulario">
+                    <label for="email" class="etiqueta">Correo Electrónico</label>
+                    <div class="contenedor-entrada">
+                        <i class="fa-solid fa-envelope icono-izquierdo"></i>
+                        <input type="email" id="email" name="email" class="campo-entrada" placeholder="correo@ejemplo.com" required>
+                    </div>
+                </div>
+
+                <div class="grupo-formulario">
+                    <label for="nuevo_usuario" class="etiqueta">Usuario</label>
+                    <div class="contenedor-entrada">
+                        <i class="fa-solid fa-user icono-izquierdo"></i>
+                        <input type="text" id="nuevo_usuario" name="nuevo_usuario" class="campo-entrada" placeholder="Elige un nombre de usuario" required>
+                    </div>
+                </div>
+
+                <div class="grupo-formulario">
+                    <label for="nueva_contrasena" class="etiqueta">Contraseña</label>
+                    <div class="contenedor-entrada">
+                        <i class="fa-solid fa-lock icono-izquierdo"></i>
+                        <input type="password" id="nueva_contrasena" name="nueva_contrasena" class="campo-entrada" placeholder="Crea una contraseña" required>
+                        <i class="fa-regular fa-eye icono-derecho"></i>
+                    </div>
+                </div>
+
+                <button type="submit" class="boton-iniciar">Registrar Usuario</button>
+
+            </form>
+
+            <div class="enlaces-acciones" style="justify-content: center;">
+                <a href="../index.html" class="enlace">¿Ya tienes cuenta? Inicia sesión aquí</a>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="../js/PersistenciaJSON.js"></script>
+    <script src="../js/GestorUsuarios.js"></script>
+    <script src="../js/registro.js"></script>
+
+</body>
+</html>
