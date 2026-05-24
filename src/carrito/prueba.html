@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Prueba Real Orientada a Objetos</title>
+</head>
+<body>
+
+    <h1>Laboratorio de Pruebas: Carrito POO</h1>
+    <p>Al abrir esta página, se creará automáticamente un inventario de prueba en el localStorage.</p>
+    
+    <div style="border: 2px solid #333; padding: 20px; width: 250px; margin-bottom: 15px;">
+        <h3>Whey Protein Fresa</h3>
+        <p>Precio: $750</p>
+        <p>Stock en almacén: 10 unidades</p>
+        <button class="boton-anadir" data-id="1779485000">Añadir al Carrito</button>
+    </div>
+
+    <div style="border: 2px solid #333; padding: 20px; width: 250px;">
+        <h3>Creatina Micronizada</h3>
+        <p>Precio: $400</p>
+        <p>Stock en almacén: 5 unidades</p>
+        <button class="boton-anadir" data-id="1779485999">Añadir al Carrito</button>
+    </div>
+
+
+    <script>
+        const inventarioSimulado = [
+            { "id": "1779485000", "nombre": "Whey Protein Fresa", "precio": 750, "stock": 10 },
+            { "id": "1779485999", "nombre": "Creatina Micronizada", "precio": 400, "stock": 5 }
+        ];
+        // Lo guardamos en el localStorage para que tu controlador lo pueda leer
+        localStorage.setItem('productosInventario', JSON.stringify(inventarioSimulado));
+        console.log("Inventario maestro inicializado en el localStorage.");
+    </script>
+
+    <script src="CarritoController.js"></script>
+
+</body>
+</html>
