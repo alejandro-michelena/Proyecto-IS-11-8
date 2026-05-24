@@ -13,10 +13,10 @@ class CarritoController {
                 evento.preventDefault();
                 
                 //buscamos el id
-                const idProductoUnix = evento.target.getAttribute('data-id');
+                const idProducto = evento.target.getAttribute('data-id');
                 
                 //empieza el flujo principal
-                this.agregarAlCarritoFlujo(idProductoUnix);
+                this.agregarAlCarritoFlujo(idProducto);
             });
         });
     }
@@ -24,7 +24,8 @@ class CarritoController {
     //busca cantidad y valida stock 
     agregarAlCarritoFlujo(idProducto) {
         // 1.- se trae la lista del inventario
-        const inventario = JSON.parse(localStorage.getItem('productosInventario')) || [];
+        const persistencia = new PersistenciaJSON();
+        const inventario = persistencia.leerArchivo('productos.json') || [];
         
         // se busca el producto que haga match con el id
         const productoEncontrado = inventario.find(p => p.id === idProducto);
@@ -50,7 +51,7 @@ class CarritoController {
         }
 
         // 3.- valida si no hay del mismo producto en el carrito
-        const carritoActual = JSON.parse(localStorage.getItem('carrito')) || [];
+        const carritoActual = persistencia.leerArchivo('carrito.json') || [];
         const productoEnCarrito = carritoActual.find(item => item.id === idProducto);
         const cantidadPrevia = productoEnCarrito ? productoEnCarrito.cantidad : 0;
 
@@ -71,7 +72,8 @@ class CarritoController {
     //escribe en carrito.json
     guardarEnLocalStorage(producto, cantidad) {
         // invoca lo que hay en el carrito
-        let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+        const persistencia = new PersistenciaJSON();
+        let carrito = persistencia.leerArchivo('carrito.json') || [];
 
         //verifica si ya existe item adentro
         const indiceExistente = carrito.findIndex(item => item.id === producto.id);
@@ -90,7 +92,7 @@ class CarritoController {
         }
 
         // guarda el arreglo
-        localStorage.setItem('carrito', JSON.stringify(carrito));
+        persistencia.escribirArchivo('carrito.json', carrito);
     }
 }
 
