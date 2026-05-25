@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VITA-SUPPS - Catálogo</title>
+    <link rel="stylesheet" href="../styles/catalogo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="admin-wrapper">
+        
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="icono-logo">
+                        <i class="fa-solid fa-leaf"></i>
+                    </div>
+                    <h1 class="texto-logo">VITA-SUPPS</h1>
+                </div>
+                <div class="admin-profile">
+                    <i class="fa-solid fa-user-tie profile-icon"></i>
+                    <span class="admin-name">Admin</span>
+                </div>
+            </div>
+            
+            <ul class="sidebar-menu">
+                <li class="menu-item active"><a href="#"><i class="fa-solid fa-cube"></i> Catálogo</a></li>
+                <li class="menu-item"><a href="agregar-producto.html"><i class="fa-solid fa-plus-circle"></i> Agregar Producto</a></li>
+                <li class="menu-item"><a href="#"><i class="fa-solid fa-list-check"></i> Pedidos</a></li>
+                <li class="menu-item"><a href="#"><i class="fa-solid fa-users"></i> Usuarios</a></li>
+                <li class="menu-item"><a href="#"><i class="fa-solid fa-gear"></i> Configuración</a></li>
+                <li class="menu-item" id="boton-carrito"><a href="#"><i class="fa-solid fa-shopping-cart"></i> Ver Carrito</a></li>
+            </ul>
+            
+            <div class="sidebar-footer">
+                <a href="../Index.html" class="logout-button"><i class="fa-solid fa-sign-out-alt"></i> Cerrar Sesión</a>
+            </div>
+        </nav>
+
+        <main class="main-content contenedor-catalogo">
+            
+            <header class="cabecera-catalogo">
+                <h1 class="titulo-pagina">Catálogo</h1>
+            </header>
+
+            <div class="barra-busqueda">
+                <i class="fa-solid fa-magnifying-glass icono-busqueda"></i>
+                <input type="text" class="campo-busqueda" placeholder="Buscar">
+            </div>
+
+            <nav class="filtros-categorias">
+                <button class="boton-filtro activo">Whey Protein</button>
+                <button class="boton-filtro">Pre-workout</button>
+                <button class="boton-filtro">Creatine</button>
+            </nav>
+
+            <section class="banner-promocional">
+                <div class="contenido-banner">
+                    <h2 class="titulo-banner">Nuevos Llegados</h2>
+                    <p class="texto-banner">Reconoce de cerca los productos creados con excelentes fórmulas y resultados.</p>
+                </div>
+                <div class="imagen-banner-contenedor"></div>
+            </section>
+
+            <section class="cuadricula-productos">
+                <article class="tarjeta-producto">
+                    <button class="boton-favorito"><i class="fa-regular fa-heart"></i></button>
+                    <div class="contenedor-imagen-producto">
+                        <div class="imagen-simulada">Pote</div>
+                    </div>
+                    <h3 class="nombre-producto">Whey Protein</h3>
+                    <p class="descripcion-producto">Descripción del producto con detalles importantes para el usuario.</p>
+                    <div class="calificacion-estrellas">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="precio-producto">$750</p>
+                    <button class="boton-anadir">Añadir al Carrito</button>
+                </article>
+            </section>
+            
+        </main>
+        
+    </div>
+    <script src="../../backend/src/helpers/PersistenciaJSON.js"></script>
+    <script src="../../backend/src/helpers/GestorUsuarios.js"></script>
+    <script src="../../backend/src/producto/GestorProductos.js"></script>
+    <script src="../../backend/src/producto/catalogo.js"></script>
+    <script src="../../backend/src/carrito/CarritoController.js"></script>
+
+    <div id="modal-carrito" class="modal-carrito-oculto">
+        <div class="contenido-modal">
+            
+            <div class="cabecera-modal">
+                <h2><i class="fa-solid fa-cart-shopping"></i> Tu Carrito de Compras</h2>
+                <button id="boton-cerrar-carrito" class="boton-cerrar">&times;</button>
+            </div>
+
+            <div class="cuerpo-modal">
+                <table class="tabla-carrito">
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+                            <th>Subtotal</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="contenedor-items-carrito">
+                        </tbody>
+                </table>
+            </div>
+
+            <div class="pie-modal">
+                <div class="bloque-totales">
+                    <p>Subtotal Neto: <span id="total-neto">$0.00</span></p>
+                    <p>IVA (16%): <span id="total-iva">$0.00</span></p>
+                    <hr>
+                    <p class="gran-total">Total a Pagar: <span id="gran-total">$0.00</span></p>
+                </div>
+                <div class="botones-globales">
+                    <button id="boton-vaciar-carrito" class="btn-vaciar"><i class="fa-solid fa-trash-can"></i> Vaciar Carrito</button>
+                    <button id="boton-proceder-pago" class="btn-pagar"><i class="fa-solid fa-credit-card"></i> Proceder al Pago</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

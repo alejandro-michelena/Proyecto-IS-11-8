@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VITA-SUPPS - Agregar Producto</title>
+    <link rel="stylesheet" href="../styles/agregar-producto.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="admin-wrapper">
+        
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="icono-logo">
+                        <i class="fa-solid fa-leaf"></i>
+                    </div>
+                    <h1 class="texto-logo">VITA-SUPPS</h1>
+                </div>
+                <div class="admin-profile">
+                    <i class="fa-solid fa-user-tie profile-icon"></i>
+                    <span class="admin-name">Admin</span>
+                </div>
+            </div>
+            
+            <ul class="sidebar-menu">
+                <li class="menu-item"><a href="catalogo.html"><i class="fa-solid fa-cube"></i> Catálogo</a></li>
+                <li class="menu-item active"><a href="#"><i class="fa-solid fa-plus-circle"></i> Agregar Producto</a></li>
+                <li class="menu-item"><a href="#"><i class="fa-solid fa-list-check"></i> Pedidos</a></li>
+                <li class="menu-item"><a href="#"><i class="fa-solid fa-users"></i> Usuarios</a></li>
+                <li class="menu-item"><a href="#"><i class="fa-solid fa-gear"></i> Configuración</a></li>
+            </ul>
+            
+            <div class="sidebar-footer">
+                <a href="../index.html" class="logout-button"><i class="fa-solid fa-sign-out-alt"></i> Cerrar Sesión</a>
+            </div>
+        </nav>
+        
+        <main class="main-content">
+            <header class="content-header">
+                <h1 class="page-title">Administrador: Agregar Producto</h1>
+            </header>
+            
+            <section class="add-product-container">
+                <form class="product-form">
+                    
+                    <div class="form-group">
+                        <label for="product-name" class="form-label">Nombre del Producto</label>
+                        <input type="text" id="product-name" class="form-input" placeholder="Nombre del Producto" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="product-category" class="form-label">Categoría</label>
+                        <select id="product-category" class="form-select" required>
+                            <option value="">Categoría</option>
+                            <option value="whey_protein">Whey Protein</option>
+                            <option value="pre_workout">Pre-workout</option>
+                            <option value="creatine">Creatine</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="product-brand" class="form-label">Marca</label>
+                        <select id="product-brand" class="form-select" required>
+                            <option value="">Marca</option>
+                            <option value="brand1">Marca 1</option>
+                            <option value="brand2">Marca 2</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group half-width">
+                            <label for="list-price" class="form-label">Precio de Lista</label>
+                            <input type="number" id="list-price" class="form-input" placeholder="Precio" step="0.01" required>
+                        </div>
+                        <div class="form-group half-width">
+                            <label for="current-stock" class="form-label">Stock Actual</label>
+                            <input type="number" id="current-stock" class="form-input" placeholder="10" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="full-description" class="form-label">Descripción Completa</label>
+                        <textarea id="full-description" class="form-textarea" placeholder="Descripción Completa" rows="6"></textarea>
+                    </div>
+                    
+                    <div class="form-group upload-group">
+                        <label class="form-label">Subir Imagen</label>
+                        <div class="upload-area">
+                            <i class="fa-solid fa-image upload-icon"></i>
+                            <p class="upload-text">Subir Imagen</p>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">Publicar Producto</button>
+                        <div class="action-buttons-row">
+                            <button type="button" class="btn-secondary">Cancelar</button>
+                            <button type="button" class="btn-secondary">Guardar como Borrador</button>
+                        </div>
+                    </div>
+                    
+                </form>
+            </section>
+        </main>
+        
+    </div>
+
+    <script src="../../backend/src/helpers/PersistenciaJSON.js"></script>
+    <script src="../../backend/src/producto/GestorProductos.js"></script>
+    <script src="../../backend/src/producto/agregar-producto.js"></script>
+
+</body>
+</html>
