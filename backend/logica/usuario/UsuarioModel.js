@@ -27,12 +27,25 @@ export class Usuario {
         return null; // null == todo bien
     }
 
-    //implementar mas tarde ************* (de la mano con el JSON)
     static guardarUsuario(nombre, correo, password) {
-        //RECORDAR QUE DEVUELVE UN BOOLEAN DE CONFIRMACION
+        const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+        
+        const existe = usuarios.some(u => u.email === correo);
+        if (existe) {
+            return false;
+        }
+
+        const nuevoId = usuarios.length > 0 ? usuarios[usuarios.length - 1].id + 1 : 1;
+        const nuevoUsuario = new Usuario(nuevoId, nombre, correo, password, "cliente");
+        
+        usuarios.push(nuevoUsuario);
+        localStorage.setItem("usuarios", JSON.stringify(usuarios));
+        return true;
     }
 
     static verificarCredenciales(email, password) {
-        //RECORDAR QUE DEVUELVE AL USUARIO (O NULL EN CASO DE NO EXISTIR)
+        const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+        const usuarioEncontrado = usuarios.find(u => u.email === email && u.password === password);
+        return usuarioEncontrado || null;
     }
 }

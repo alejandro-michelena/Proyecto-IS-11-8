@@ -1,8 +1,5 @@
 import { UsuarioModel } from "./UsuarioModel.js";
 
-//este controlador manejara 3 archivos html 
-//Iniciar Sesion, Registrar Perfil, Consultar Perfil
-
 export class UsuarioController {
     constructor() {
         //referencias a los elementos html:
@@ -45,7 +42,7 @@ export class UsuarioController {
         const email = this.inputEmail.value;
         const password = this.inputPassword.value;
 
-        const error = UsuarioModel.validarDatos(email, password); //funcion nativa del objeto Usuario (BOOL)
+        const error = UsuarioModel.validarDatos(nombre, email, password); //funcion nativa del objeto Usuario (BOOL)
         if (error) {
             alert(error); /////
             return;
