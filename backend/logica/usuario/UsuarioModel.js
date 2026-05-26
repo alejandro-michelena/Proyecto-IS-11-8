@@ -3,7 +3,7 @@ import { PersistenciaJSON } from "../../helpers/persistenciaJSON.js";
 const persistencia = new PersistenciaJSON();
 const ARCHIVO_USUARIOS = 'usuarios.json';
 
-class Usuario {
+export class Usuario {
     constructor(id, nombre, email, password, rol) {
         this.id = id;
         this.nombre = nombre;
