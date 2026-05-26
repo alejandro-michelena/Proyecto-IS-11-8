@@ -1,8 +1,3 @@
-import { PersistenciaJSON } from "../../helpers/persistenciaJSON.js";
-
-const persistencia = new PersistenciaJSON();
-const ARCHIVO_USUARIOS = 'usuarios.json';
-
 export class Usuario {
     constructor(id, nombre, email, password, rol) {
         this.id = id;
@@ -32,32 +27,45 @@ export class Usuario {
         return null; 
     }
 
-    //Guardar USER JSON (registro)
-    static guardarUsuario(nombre, correo, password) {
-        const usuarios = persistencia.leerArchivo(ARCHIVO_USUARIOS) || [];
+    // EXTRAER: Hace una peticion HTTP para leer los usuarios reales del disco duro
+    static async obtenerUsuarios() {
+        try {
+            const respuesta = await fetch('/api/leer/usuarios.json');
+            return await respuesta.json();
+        } catch (error) {
+            console.error("Error obteniendo usuarios del disco físico:", error);
+            return [];
+        }
+    }
+
+    // GUARDAR: Agrega el usuario y envia la lista completa al servidor para que la guarde
+    static async guardarUsuario(nombre, correo, password) {
+        const usuarios = await Usuario.obtenerUsuarios();
         
         const existe = usuarios.some(u => u.email.toLowerCase() === correo.toLowerCase());
-        if (existe) {
-            return false;
-        }
+        if (existe) return false;
 
         const nuevoId = usuarios.length > 0 ? usuarios[usuarios.length - 1].id + 1 : 1;
         const nuevoUsuario = new Usuario(nuevoId, nombre.trim(), correo.trim().toLowerCase(), password, "estudiante");
         
         usuarios.push(nuevoUsuario);
-        persistencia.escribirArchivo(ARCHIVO_USUARIOS, usuarios);
-        
-        return true;
+
+        // envia el arreglo actualizado al endpoint de escritura de Node.js
+        const respuesta = await fetch('/api/escribir/usuarios.json', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(usuarios)
+        });
+
+        return respuesta.ok;
     }
 
-    //Verify USER JSON (login)
-    static verificarCredenciales(email, password) {
-        const usuarios = persistencia.leerArchivo(ARCHIVO_USUARIOS) || [];
-        
+    // VERIFICAR: Compara las credenciales con los datos reales extraidos del archivo fisico
+    static async verificarCredenciales(email, password) {
+        const usuarios = await Usuario.obtenerUsuarios();
         const usuarioEncontrado = usuarios.find(
             u => u.email.toLowerCase() === email.toLowerCase() && u.password === password
         );
-        
         return usuarioEncontrado || null;
     }
 }

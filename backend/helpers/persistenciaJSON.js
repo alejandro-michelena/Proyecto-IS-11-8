@@ -1,10 +1,18 @@
+import fs from 'fs';
+import path from 'path';
+
 export class PersistenciaJSON {
     constructor() {
-        this.rutaBase = 'data';
+        // apunta a la ruta absoluta de la carpeta backend/data
+        this.directorioData = path.resolve('backend/data');
         this.inicializarAlmacenamiento();
     }
 
     inicializarAlmacenamiento() {
+        if (!fs.existsSync(this.directorioData)) {
+            fs.mkdirSync(this.directorioData, { recursive: true });
+        }
+
         const archivosReales = [
             'productos.json',
             'usuarios.json',
@@ -13,49 +21,34 @@ export class PersistenciaJSON {
         ];
 
         archivosReales.forEach(archivo => {
-            const rutaCompleta = `${this.rutaBase}/${archivo}`;
-            if (!localStorage.getItem(rutaCompleta)) {
-                localStorage.setItem(rutaCompleta, JSON.stringify([])); 
+            const rutaCompleta = path.join(this.directorioData, archivo);
+            if (!fs.existsSync(rutaCompleta)) {
+                fs.writeFileSync(rutaCompleta, JSON.stringify([], null, 2), 'utf-8');
             }
         });
     }
 
     leerArchivo(nombreArchivo) {
-        const rutaCompleta = `${this.rutaBase}/${nombreArchivo}`;
-        const datos = localStorage.getItem(rutaCompleta);
-        if (!datos) return null;
-        return JSON.parse(datos);
+        try {
+            const rutaCompleta = path.join(this.directorioData, nombreArchivo);
+            if (!fs.existsSync(rutaCompleta)) return null;
+            
+            const contenidoTexto = fs.readFileSync(rutaCompleta, 'utf-8');
+            return JSON.parse(contenidoTexto);
+        } catch (error) {
+            console.error(`Error al leer el archivo físico ${nombreArchivo}:`, error);
+            return null;
+        }
     }
 
     escribirArchivo(nombreArchivo, datos) {
-        const rutaCompleta = `${this.rutaBase}/${nombreArchivo}`;
-        localStorage.setItem(rutaCompleta, JSON.stringify(datos, null, 2));
-    }
-
-    exportarTodo() {
-        const archivos = ['productos.json', 'usuarios.json', 'carrito.json', 'pedidos.json'];
-        const datosCompletos = {};
-        
-        archivos.forEach(archivo => {
-            datosCompletos[archivo] = this.leerArchivo(archivo);
-        });
-        return datosCompletos;
-    }
-
-    importarTodo(datosCompletos) {
-        for (const [nombreArchivo, contenido] of Object.entries(datosCompletos)) {
-            this.escribirArchivo(nombreArchivo, contenido);
+        try {
+            const rutaCompleta = path.join(this.directorioData, nombreArchivo);
+            fs.writeFileSync(rutaCompleta, JSON.stringify(datos, null, 2), 'utf-8');
+            return true;
+        } catch (error) {
+            console.error(`Error al escribir en el archivo físico ${nombreArchivo}:`, error);
+            return false;
         }
-        return { exito: true, mensaje: 'Datos importados exitosamente.' };
-    }
-
-    descargarRespaldo() {
-        const datos = this.exportarTodo();
-        const archivoJSON = JSON.stringify(datos, null, 2);
-        const blob = new Blob([archivoJSON], { type: 'application/json' });
-        const enlace = document.createElement('a');
-        enlace.href = URL.createObjectURL(blob);
-        enlace.download = 'respaldo_sistema_' + new Date().toISOString().slice(0, 10) + '.json';
-        enlace.click();
     }
 }

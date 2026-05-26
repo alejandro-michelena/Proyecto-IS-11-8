@@ -29,7 +29,8 @@ export class UsuarioController {
         }
     }
 
-    manejarRegistro(e) {
+    // puse 'async' aqui
+    async manejarRegistro(e) {
         e.preventDefault(); 
         
         const nombre = this.inputNombre.value;
@@ -42,24 +43,31 @@ export class UsuarioController {
             return;
         }
 
-        const exito = Usuario.guardarUsuario(nombre, email, password);
+        // puse 'await' aqui porque va al servidor real
+        const exito = await Usuario.guardarUsuario(nombre, email, password);
         if (exito) {
             alert("Registro exitoso");
+            // limpia el formulario
+            this.inputNombre.value = "";
+            this.inputEmail.value = "";
+            this.inputPassword.value = "";
         } else {
             alert("El correo ya está registrado");
         }
     }
 
-    manejarLogin(e) {
+    // añadido 'async' aqui
+    async manejarLogin(e) {
         e.preventDefault();
 
         const email = this.inputLoginEmail.value;
         const password = this.inputLoginPassword.value;
 
-        const usuario = Usuario.verificarCredenciales(email, password);
+        // añadido 'await' aquí para verificar contra el archivo fisico
+        const usuario = await Usuario.verificarCredenciales(email, password);
         if (usuario) {
             sessionStorage.setItem("usuarioActivo", JSON.stringify(usuario));
-            window.location.href = "gestionProductos.html";
+            window.location.href = "../../vistas/gestionProductos.html"; // asegura que la ruta relativa calce con tu app
         } else {
             alert("Credenciales incorrectas");
         }
@@ -68,7 +76,7 @@ export class UsuarioController {
     cargarPerfil() {
         const sesion = sessionStorage.getItem("usuarioActivo");
         if (!sesion) {
-            window.location.href = "login.html";
+            window.location.href = "../../vistas/login.html";
             return;
         }
 
