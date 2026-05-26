@@ -46,7 +46,7 @@ export class Usuario {
         if (existe) return false;
 
         const nuevoId = usuarios.length > 0 ? usuarios[usuarios.length - 1].id + 1 : 1;
-        const nuevoUsuario = new Usuario(nuevoId, nombre.trim(), correo.trim().toLowerCase(), password, "estudiante");
+        const nuevoUsuario = new Usuario(nuevoId, nombre.trim(), correo.trim().toLowerCase(), password, "cliente");
         
         usuarios.push(nuevoUsuario);
 
