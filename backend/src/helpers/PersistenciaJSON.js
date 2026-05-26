@@ -19,7 +19,7 @@ class PersistenciaJSON {
             this.escribirArchivo('borradores.json', []);
         }
 
-        if (!localStorage.getItem('../data/carrito.json')) {
+        if (!localStorage.getItem('data/carrito.json')) {
             this.escribirArchivo('carrito.json', []);
         }
 
@@ -33,6 +33,10 @@ class PersistenciaJSON {
 
         if (!localStorage.getItem('data/contador_productos.json')) {
             this.escribirArchivo('contador_productos.json', { contador: 0 });
+        }
+
+        if (!localStorage.getItem('data/pedidos.json')) {
+            this.escribirArchivo('pedidos.json', []);
         }
     }
 
@@ -143,7 +147,8 @@ class PersistenciaJSON {
             'carrito.json',
             'favoritos.json',
             'sesion.json',
-            'contador_productos.json'
+            'contador_productos.json',
+            'pedidos.json'
         ];
 
         const datosCompletos = {};
