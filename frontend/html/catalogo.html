@@ -29,7 +29,7 @@
             <ul class="sidebar-menu">
                 <li class="menu-item active"><a href="#"><i class="fa-solid fa-cube"></i> Catálogo</a></li>
                 <li class="menu-item"><a href="agregar-producto.html"><i class="fa-solid fa-plus-circle"></i> Agregar Producto</a></li>
-                <li class="menu-item"><a href="#"><i class="fa-solid fa-list-check"></i> Pedidos</a></li>
+                <li class="menu-item"><a href="gestionPedidos.html"><i class="fa-solid fa-list-check"></i> Pedidos</a></li>
                 <li class="menu-item"><a href="#"><i class="fa-solid fa-users"></i> Usuarios</a></li>
                 <li class="menu-item"><a href="#"><i class="fa-solid fa-gear"></i> Configuración</a></li>
                 <li class="menu-item" id="boton-carrito"><a href="#"><i class="fa-solid fa-shopping-cart"></i> Ver Carrito</a></li>
@@ -42,8 +42,11 @@
 
         <main class="main-content contenedor-catalogo">
             
-            <header class="cabecera-catalogo">
-                <h1 class="titulo-pagina">Catálogo</h1>
+            <header class="cabecera-catalogo" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h1 class="titulo-pagina" style="margin: 0;">Catálogo</h1>
+                <button id="btn-pagar-test" style="padding: 12px 20px; background: #eab308; color: #1e293b; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: 0.2s; box-shadow: 0 4px 12px rgba(234, 179, 8, 0.2);">
+                    <i class="fa-solid fa-credit-card"></i> Pagar Carrito (Test)
+                </button>
             </header>
 
             <div class="barra-busqueda">
@@ -91,6 +94,9 @@
     <script src="../../backend/src/producto/GestorProductos.js"></script>
     <script src="../../backend/src/producto/catalogo.js"></script>
     <script src="../../backend/src/carrito/CarritoController.js"></script>
+    <script src="../../backend/src/pedidos/PedidosModel.js"></script>
+    <script src="../../backend/src/pedidos/PedidosController.js"></script>
+    <script src="../js/checkout.js"></script>
 
     <div id="modal-carrito" class="modal-carrito-oculto">
         <div class="contenido-modal">
