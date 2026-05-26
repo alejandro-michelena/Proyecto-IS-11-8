@@ -1,28 +1,22 @@
-import { UsuarioModel } from "./UsuarioModel.js";
+import { Usuario } from "./UsuarioModel.js";
 
 export class UsuarioController {
     constructor() {
-        //referencias a los elementos html:
-        //botones de Registrar Perfil
         this.inputNombre = document.getElementById("registro-nombre");
         this.inputEmail = document.getElementById("registro-email");
         this.inputPassword = document.getElementById("registro-password");
         this.btnRegistrar = document.getElementById("btn-registrar");
 
-        //botones de Iniciar Sesion
         this.inputLoginEmail = document.getElementById("login-email");
         this.inputLoginPassword = document.getElementById("login-password");
         this.btnLogin = document.getElementById("btn-login");
 
-        //textos donde se mostraran los datos al Consultar Perfil
         this.txtPerfilNombre = document.getElementById("perfil-nombre");
         this.txtPerfilEmail = document.getElementById("perfil-email");
 
         this.configurarEventos();
     }
 
-    //esta funcion determina en cual de los html estamos cada vez que el html se recargue
-    //ademas ella activa los botones relevantes
     configurarEventos() {
         if (this.btnRegistrar) {
             this.btnRegistrar.addEventListener("click", (e) => this.manejarRegistro(e));
@@ -36,19 +30,19 @@ export class UsuarioController {
     }
 
     manejarRegistro(e) {
-        e.preventDefault(); //evita que se reinicie el html
+        e.preventDefault(); 
         
         const nombre = this.inputNombre.value;
         const email = this.inputEmail.value;
         const password = this.inputPassword.value;
 
-        const error = UsuarioModel.validarDatos(nombre, email, password); //funcion nativa del objeto Usuario (BOOL)
+        const error = Usuario.validarDatos(nombre, email, password); 
         if (error) {
-            alert(error); /////
+            alert(error); 
             return;
         }
 
-        const exito = UsuarioModel.guardarUsuario(nombre, email, password);
+        const exito = Usuario.guardarUsuario(nombre, email, password);
         if (exito) {
             alert("Registro exitoso");
         } else {
@@ -62,7 +56,7 @@ export class UsuarioController {
         const email = this.inputLoginEmail.value;
         const password = this.inputLoginPassword.value;
 
-        const usuario = UsuarioModel.verificarCredenciales(email, password);
+        const usuario = Usuario.verificarCredenciales(email, password);
         if (usuario) {
             sessionStorage.setItem("usuarioActivo", JSON.stringify(usuario));
             window.location.href = "gestionProductos.html";
@@ -78,7 +72,7 @@ export class UsuarioController {
             return;
         }
 
-        const usuario = JSON.parse(sesion); //objeto plano de JS pero contiene todos los datos del usuario
+        const usuario = JSON.parse(sesion); 
         this.txtPerfilNombre.textContent = usuario.nombre;
         this.txtPerfilEmail.textContent = usuario.email;
     }
