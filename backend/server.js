@@ -12,19 +12,19 @@ app.use(express.json());
 // servir los archivos del proyecto (HTML, CSS, JS del cliente)
 app.use(express.static(path.resolve()));
 
-// ruta para LEER un archivo JSON
+// LEER
 app.get('/api/leer/:archivo', (req, res) => {
     const datos = persistencia.leerArchivo(req.params.archivo);
     res.json(datos || []); //devuelve el archivo o una lista vacia
 });
 
-// ruta para ESCRIBIR en un archivo JSON
+// ESCRIBIR
 app.post('/api/escribir/:archivo', (req, res) => {
     const exito = persistencia.escribirArchivo(req.params.archivo, req.body);
     if (exito) {
         res.json({ mensaje: "Guardado con éxito" });
     } else {
-        res.status(500).json({ error: "Error al escribir en el disco" });
+        res.status(500).json({ error: "Error al escribir en el disco" }); //error interno
     }
 });
 

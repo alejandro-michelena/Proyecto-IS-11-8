@@ -4,7 +4,7 @@ import path from 'path';
 export class PersistenciaJSON {
     constructor() {
         // apunta a la ruta absoluta de la carpeta backend/data
-        this.directorioData = path.resolve('backend/data');
+        this.directorioData = path.resolve('../data');
         this.inicializarAlmacenamiento();
     }
 
@@ -13,14 +13,14 @@ export class PersistenciaJSON {
             fs.mkdirSync(this.directorioData, { recursive: true });
         }
 
-        const archivosReales = [
+        const archivosJSON = [
             'productos.json',
             'usuarios.json',
             'carrito.json',
             'pedidos.json'
         ];
 
-        archivosReales.forEach(archivo => {
+        archivosJSON.forEach(archivo => {
             const rutaCompleta = path.join(this.directorioData, archivo);
             if (!fs.existsSync(rutaCompleta)) {
                 fs.writeFileSync(rutaCompleta, JSON.stringify([], null, 2), 'utf-8');
@@ -36,7 +36,7 @@ export class PersistenciaJSON {
             const contenidoTexto = fs.readFileSync(rutaCompleta, 'utf-8');
             return JSON.parse(contenidoTexto);
         } catch (error) {
-            console.error(`Error al leer el archivo físico ${nombreArchivo}:`, error);
+            console.error(`Error al leer el archivo ${nombreArchivo}:`, error);
             return null;
         }
     }
@@ -47,7 +47,7 @@ export class PersistenciaJSON {
             fs.writeFileSync(rutaCompleta, JSON.stringify(datos, null, 2), 'utf-8');
             return true;
         } catch (error) {
-            console.error(`Error al escribir en el archivo físico ${nombreArchivo}:`, error);
+            console.error(`Error al escribir en el archivo ${nombreArchivo}:`, error);
             return false;
         }
     }

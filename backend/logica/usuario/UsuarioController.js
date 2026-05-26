@@ -43,7 +43,6 @@ export class UsuarioController {
             return;
         }
 
-        // puse 'await' aqui porque va al servidor real
         const exito = await Usuario.guardarUsuario(nombre, email, password);
         if (exito) {
             alert("Registro exitoso");
@@ -56,18 +55,16 @@ export class UsuarioController {
         }
     }
 
-    // añadido 'async' aqui
     async manejarLogin(e) {
         e.preventDefault();
 
         const email = this.inputLoginEmail.value;
         const password = this.inputLoginPassword.value;
 
-        // añadido 'await' aquí para verificar contra el archivo fisico
         const usuario = await Usuario.verificarCredenciales(email, password);
         if (usuario) {
             sessionStorage.setItem("usuarioActivo", JSON.stringify(usuario));
-            window.location.href = "../../vistas/gestionProductos.html"; // asegura que la ruta relativa calce con tu app
+            window.location.href = "../../frontend/html/catalogo.html"; // asegura que la ruta relativa calce con tu app
         } else {
             alert("Credenciales incorrectas");
         }
@@ -76,7 +73,7 @@ export class UsuarioController {
     cargarPerfil() {
         const sesion = sessionStorage.getItem("usuarioActivo");
         if (!sesion) {
-            window.location.href = "../../vistas/login.html";
+            window.location.href = "../../frontend/html/index.html";
             return;
         }
 
