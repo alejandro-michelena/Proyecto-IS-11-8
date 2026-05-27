@@ -1,0 +1,196 @@
+/* ==========================================================================
+Variables de color y tipografía
+   ========================================================================== */
+:root {
+    --color-primario: #2b5074; /* Azul oscuro del texto y botón */
+    --color-acento: #eaa55f; /* Naranja del logo */
+    --color-fondo: #f4f7f9; /* Color de fondo claro similar a la imagen */
+    --color-blanco: #ffffff;
+    --color-texto: #1a1a1a;
+    --color-borde: #d1d5db;
+    --color-icono: #6b7280;
+    --fuente-principal: 'Roboto', sans-serif;
+}
+
+/* ==========================================================================
+   Restablecimiento básico (Reset)
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--fuente-principal);
+    background-color: var(--color-fondo);
+    /* Si tienes la imagen de fondo con los frascos, descomenta y ajusta la siguiente línea: */
+    /* background-image: url('../ruta-a-tu-imagen-de-fondo.png'); */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* ==========================================================================
+   Contenedores principales
+   ========================================================================== */
+.contenedor-pantalla {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ==========================================================================
+   Estilos del Logo
+   ========================================================================== */
+.contenedor-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.icono-logo {
+    color: var(--color-acento);
+    font-size: 40px;
+    margin-bottom: -10px; /* Para acercar la hoja al texto simulando el logo */
+    z-index: 1;
+}
+
+.texto-logo {
+    color: var(--color-primario);
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* ==========================================================================
+   Estilos de la Tarjeta y Formulario
+   ========================================================================== */
+.tarjeta-login {
+    width: 100%;
+    /* Fondo transparente para que se integre con el fondo como en la imagen */
+    background-color: transparent; 
+}
+
+.titulo-login {
+    text-align: center;
+    color: var(--color-texto);
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.formulario-login {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.grupo-formulario {
+    display: flex;
+    flex-direction: column;
+}
+
+.etiqueta {
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--color-texto);
+    margin-bottom: 8px;
+    margin-left: 5px;
+}
+
+/* Contenedor relativo para poder posicionar los íconos de forma absoluta */
+.contenedor-entrada {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.campo-entrada {
+    width: 100%;
+    padding: 14px 40px 14px 45px; /* Espacio para los íconos */
+    border: 1px solid var(--color-borde);
+    border-radius: 25px; /* Bordes redondeados tipo píldora */
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.3s;
+    background-color: var(--color-blanco);
+}
+
+.campo-entrada:focus {
+    border-color: var(--color-primario);
+}
+
+.campo-entrada::placeholder {
+    color: #9ca3af;
+}
+
+/* ==========================================================================
+   Estilos de los Íconos
+   ========================================================================== */
+.icono-izquierdo {
+    position: absolute;
+    left: 15px;
+    color: var(--color-icono);
+    font-size: 18px;
+}
+
+.icono-derecho {
+    position: absolute;
+    right: 15px;
+    color: var(--color-icono);
+    font-size: 18px;
+    cursor: pointer; /* Indica que se puede hacer clic (ej: mostrar contraseña) */
+}
+
+/* Color especial para el ícono de usuario para que se parezca al de la imagen */
+.fa-user.icono-izquierdo {
+    color: #ce9c6e; /* Color piel/naranja del avatar */
+}
+
+/* ==========================================================================
+   Botón y Enlaces
+   ========================================================================== */
+.boton-iniciar {
+    width: 100%;
+    padding: 15px;
+    margin-top: 10px;
+    background-color: var(--color-primario);
+    color: var(--color-blanco);
+    border: none;
+    border-radius: 25px; /* Bordes redondeados tipo píldora */
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.boton-iniciar:hover {
+    background-color: #1f3b56; /* Un tono más oscuro al pasar el mouse */
+}
+
+.enlaces-acciones {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding: 0 10px;
+}
+
+.enlace {
+    color: var(--color-primario);
+    text-decoration: underline;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.enlace:hover {
+    color: #1f3b56;
+}
