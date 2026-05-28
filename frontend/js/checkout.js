@@ -38,3 +38,19 @@ window.ejecutarCheckout = async function () {
         alert('Error al realizar la compra: ' + resultado.mensaje);
     }
 };
+
+// Compatibilidad: si el botón está en catalogo.html fuera del módulo de catálogo
+document.addEventListener('DOMContentLoaded', () => {
+    const btnPagar     = document.getElementById('boton-proceder-pago');
+    const btnPagarTest = document.getElementById('btn-pagar-test');
+
+    btnPagar?.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.ejecutarCheckout();
+    });
+
+    btnPagarTest?.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.ejecutarCheckout();
+    });
+});
