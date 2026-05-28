@@ -9,7 +9,7 @@ class CarritoController {
         this.tbody = document.getElementById('contenedor-items-carrito');
         
         // Elementos de UI
-        this.botonVer = document.getElementById('boton-carrito');
+        this.botonVer = document.getElementById('menu-carrito'); //este es el boton del carrito en la barra lateral izquierda (lo renombre para cohesividad)
         this.botonCerrar = document.getElementById('boton-cerrar-carrito');
         this.botonVaciar = document.getElementById('boton-vaciar-carrito');
         this.botonPagar = document.getElementById('boton-proceder-pago');

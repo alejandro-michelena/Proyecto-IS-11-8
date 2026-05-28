@@ -1,6 +1,6 @@
 {
-  "id": 2,
-  "nombre": "Diego Rodriguez",
-  "email": "derodriguez.24@est.ucab.edu.ve",
-  "rol": "cliente"
+  "id": 1,
+  "nombre": "Admin1 Michelena",
+  "email": "ahmichelena.24@est.ucab.edu.ve",
+  "rol": "admin"
 }
