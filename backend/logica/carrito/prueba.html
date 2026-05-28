@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Prueba de Integración: Carrito + Gestor</title>
+</head>
+<body>
+
+    <h1>Laboratorio de Pruebas: Integración de Módulos</h1>
+    <p>Esta página simula el catálogo generado por el Gestor de Productos de tu compañero.</p>
+    
+    <div style="border: 2px solid #333; padding: 20px; width: 250px; margin-bottom: 15px;">
+        <h3>Whey Protein Fresa</h3>
+        <p>Precio: $750</p>
+        <p>Stock en almacén: 10 unidades</p>
+        <button class="boton-anadir" data-id="prod_001">Añadir al Carrito</button>
+    </div>
+
+    <div style="border: 2px solid #333; padding: 20px; width: 250px;">
+        <h3>Creatina Micronizada</h3>
+        <p>Precio: $400</p>
+        <p>Stock en almacén: 5 unidades</p>
+        <button class="boton-anadir" data-id="prod_002">Añadir al Carrito</button>
+    </div>
+
+    <script>
+        // --- SIMULACIÓN DE LA PERSISTENCIA DE TU COMPAÑERO ---
+        // Creamos la clase para que tu controlador no dé error de "undefined" al ejecutarse solo
+        class PersistenciaJSON {
+            leerArchivo(nombreArchivo) {
+                return JSON.parse(localStorage.getItem(nombreArchivo)) || null;
+            }
+            escribirArchivo(nombreArchivo, datos) {
+                localStorage.setItem(nombreArchivo, JSON.stringify(datos));
+            }
+        }
+
+        // Simulamos los productos que el Gestor de Productos ya debió haber publicado
+        const persistenciaMock = new PersistenciaJSON();
+        const productosPublicadosSimulados = [
+            { "id": "prod_001", "nombre": "Whey Protein Fresa", "precio": 750, "stock": 10, "estado": "publicado" },
+            { "id": "prod_002", "nombre": "Creatina Micronizada", "precio": 400, "stock": 5, "estado": "publicado" }
+        ];
+        
+        // Lo guardamos en el archivo virtual 'productos.json'
+        persistenciaMock.escribirArchivo('productos.json', productosPublicadosSimulados);
+        console.log("Simulación: 'productos.json' inicializado con IDs secuenciales.");
+    </script>
+
+    <script src="CarritoController.js"></script>
+
+</body>
+</html>
