@@ -47,7 +47,7 @@ export class PersistenciaJSON {
             fs.writeFileSync(rutaCompleta, JSON.stringify(datos, null, 2), 'utf-8');
             return true;
         } catch (error) {
-            console.error(`Error al escribir en el archivo ${nombreArchivo}:`, error);
+            console.error(`Error al escribir en el archivo físico ${nombreArchivo}:`, error);
             return false;
         }
     }
