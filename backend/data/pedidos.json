@@ -110,5 +110,29 @@
       "direccion": "Av. Las Palmas 456, Caracas",
       "telefono": "0412-0000000"
     }
+  },
+  {
+    "id": "PED-1779997020426",
+    "clienteId": 2,
+    "clienteNombre": "Cliente PruebaX",
+    "fecha": "2026-05-28T19:37:00.426Z",
+    "items": [
+      {
+        "idProducto": "prod_001",
+        "nombre": "Golden Pro",
+        "precioUnitario": 20,
+        "cantidad": 1,
+        "subtotal": 20
+      }
+    ],
+    "subtotalNeto": 20,
+    "iva": 3.2,
+    "total": 23.2,
+    "estado": "pendiente",
+    "metodoPago": "tarjeta",
+    "detallesEnvio": {
+      "direccion": "Av. Las Palmas 456, Caracas",
+      "telefono": "0412-0000000"
+    }
   }
 ]

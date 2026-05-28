@@ -17,8 +17,8 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, '../frontend/html')));
 // CSS
 app.use('/styles', express.static(path.join(__dirname, '../frontend/styles')));
-// JS del cliente (checkout.js, pedidosView.js, persistenciaCliente.js)
-app.use('/js', express.static(path.join(__dirname, '../frontend/js')));
+// Ayudantes de backend expuestos al browser (como persistenciaCliente.js)
+app.use('/helpers', express.static(path.join(__dirname, 'helpers')));
 // Lógica del backend expuesta al browser (logica con "a")
 app.use('/logica', express.static(path.join(__dirname, 'logica')));
 // ElementosJS
