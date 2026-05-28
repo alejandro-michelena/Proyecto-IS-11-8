@@ -3,23 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VITA-SUPPS - Gestión de Pedidos</title>
-    <link rel="stylesheet" href="../styles/catalogo.css">
-    <link rel="stylesheet" href="../styles/pedidos.css">
+    <title>VITA-SUPPS - Gestion de Pedidos</title>
+    <link rel="stylesheet" href="/styles/catalogo.css">
+    <link rel="stylesheet" href="/styles/pedidos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-
     <div class="admin-wrapper">
-        
-        <!-- Sidebar consistente con el catálogo -->
         <nav class="sidebar">
             <div class="sidebar-header">
                 <div class="logo">
-                    <div class="icono-logo">
-                        <i class="fa-solid fa-leaf"></i>
-                    </div>
+                    <div class="icono-logo"><i class="fa-solid fa-leaf"></i></div>
                     <h1 class="texto-logo">VITA-SUPPS</h1>
                 </div>
                 <div class="admin-profile">
@@ -27,78 +22,43 @@
                     <span class="admin-name">Admin</span>
                 </div>
             </div>
-            
             <ul class="sidebar-menu">
-                <li class="menu-item"><a href="catalogo.html"><i class="fa-solid fa-cube"></i> Catálogo</a></li>
+                <li class="menu-item"><a href="catalogo.html"><i class="fa-solid fa-cube"></i> Catalogo</a></li>
                 <li class="menu-item"><a href="agregar-producto.html"><i class="fa-solid fa-plus-circle"></i> Agregar Producto</a></li>
                 <li class="menu-item active"><a href="#"><i class="fa-solid fa-list-check"></i> Pedidos</a></li>
-                <li class="menu-item"><a href="#"><i class="fa-solid fa-users"></i> Usuarios</a></li>
-                <li class="menu-item"><a href="#"><i class="fa-solid fa-gear"></i> Configuración</a></li>
+                <li class="menu-item"><a href="gestionPerfil.html"><i class="fa-solid fa-user"></i> Mi Perfil</a></li>
             </ul>
-            
             <div class="sidebar-footer">
-                <a href="../Index.html" class="logout-button"><i class="fa-solid fa-sign-out-alt"></i> Cerrar Sesión</a>
+                <a href="index.html" class="logout-button"><i class="fa-solid fa-sign-out-alt"></i> Cerrar Sesion</a>
             </div>
         </nav>
-
-        <!-- Contenido principal -->
         <main class="main-content">
-            
             <header class="cabecera-pedidos">
-                <div>
-                    <h1 class="titulo-pagina">Gestión de Pedidos</h1>
-                    <p class="subtitulo-pagina">Administra y haz seguimiento de todas las compras realizadas.</p>
-                </div>
+                <h1 class="titulo-pagina">Gestion de Pedidos</h1>
+                <p class="subtitulo-pagina">Administra y haz seguimiento de todas las compras realizadas.</p>
             </header>
-
-            <!-- Tarjetas de Estadísticas (Aesthetics Premium) -->
             <section class="tarjetas-estadisticas">
                 <div class="tarjeta-stat azul">
-                    <div class="icono-stat">
-                        <i class="fa-solid fa-receipt"></i>
-                    </div>
-                    <div class="datos-stat">
-                        <span class="numero-stat" id="stat-total-pedidos">0</span>
-                        <span class="etiqueta-stat">Pedidos Totales</span>
-                    </div>
+                    <div class="icono-stat"><i class="fa-solid fa-receipt"></i></div>
+                    <div class="datos-stat"><span class="numero-stat" id="stat-total-pedidos">0</span><span class="etiqueta-stat">Pedidos Totales</span></div>
                 </div>
-                
                 <div class="tarjeta-stat naranja">
-                    <div class="icono-stat">
-                        <i class="fa-solid fa-clock-rotate-left"></i>
-                    </div>
-                    <div class="datos-stat">
-                        <span class="numero-stat" id="stat-pendientes">0</span>
-                        <span class="etiqueta-stat">Pendientes</span>
-                    </div>
+                    <div class="icono-stat"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                    <div class="datos-stat"><span class="numero-stat" id="stat-pendientes">0</span><span class="etiqueta-stat">Pendientes</span></div>
                 </div>
-
                 <div class="tarjeta-stat verde">
-                    <div class="icono-stat">
-                        <i class="fa-solid fa-circle-check"></i>
-                    </div>
-                    <div class="datos-stat">
-                        <span class="numero-stat" id="stat-completados">0</span>
-                        <span class="etiqueta-stat">Completados</span>
-                    </div>
+                    <div class="icono-stat"><i class="fa-solid fa-circle-check"></i></div>
+                    <div class="datos-stat"><span class="numero-stat" id="stat-completados">0</span><span class="etiqueta-stat">Completados</span></div>
                 </div>
-
                 <div class="tarjeta-stat oro">
-                    <div class="icono-stat">
-                        <i class="fa-solid fa-dollar-sign"></i>
-                    </div>
-                    <div class="datos-stat">
-                        <span class="numero-stat" id="stat-ingresos">$0.00</span>
-                        <span class="etiqueta-stat">Ingresos Netos</span>
-                    </div>
+                    <div class="icono-stat"><i class="fa-solid fa-dollar-sign"></i></div>
+                    <div class="datos-stat"><span class="numero-stat" id="stat-ingresos">$0.00</span><span class="etiqueta-stat">Ingresos Netos</span></div>
                 </div>
             </section>
-
-            <!-- Filtros y Búsqueda -->
             <div class="barra-acciones-pedidos">
                 <div class="busqueda-pedido">
                     <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="text" id="buscar-pedido" placeholder="Buscar por ID de pedido o cliente...">
+                    <input type="text" id="buscar-pedido" placeholder="Buscar por ID o cliente...">
                 </div>
                 <div class="filtros-estado">
                     <button class="boton-filtro-ped activo" data-filtro="todos">Todos</button>
@@ -107,26 +67,13 @@
                     <button class="boton-filtro-ped" data-filtro="cancelado">Cancelados</button>
                 </div>
             </div>
-
-            <!-- Listado de Pedidos -->
             <section class="seccion-tabla-pedidos">
                 <div class="contenedor-tabla-pedidos">
                     <table class="tabla-pedidos">
                         <thead>
-                            <tr>
-                                <th>Pedido ID</th>
-                                <th>Fecha</th>
-                                <th>Cliente</th>
-                                <th>Items (Cant.)</th>
-                                <th>Total</th>
-                                <th>Método Pago</th>
-                                <th>Estado</th>
-                                <th style="text-align: center;">Acciones</th>
-                            </tr>
+                            <tr><th>Pedido ID</th><th>Fecha</th><th>Cliente</th><th>Items</th><th>Total</th><th>Metodo Pago</th><th>Estado</th><th style="text-align:center;">Acciones</th></tr>
                         </thead>
-                        <tbody id="lista-pedidos-body">
-                            <!-- Inyectado dinámicamente -->
-                        </tbody>
+                        <tbody id="lista-pedidos-body"></tbody>
                     </table>
                     <div id="sin-pedidos" class="sin-datos-oculto">
                         <i class="fa-solid fa-box-open"></i>
@@ -134,30 +81,20 @@
                     </div>
                 </div>
             </section>
-            
         </main>
-        
     </div>
-
-    <!-- Modal para Detalle de Pedido -->
     <div id="modal-detalle-pedido" class="modal-detalle-oculto">
         <div class="contenido-modal-detalle">
             <div class="cabecera-modal-detalle">
                 <h2><i class="fa-solid fa-circle-info"></i> Detalles del Pedido</h2>
                 <button id="cerrar-modal-detalle" class="boton-cerrar-modal">&times;</button>
             </div>
-            
-            <div class="cuerpo-modal-detalle" id="modal-detalle-cuerpo">
-                <!-- Inyectado dinámicamente -->
-            </div>
+            <div class="cuerpo-modal-detalle" id="modal-detalle-cuerpo"></div>
         </div>
     </div>
-
-    <!-- Scripts de persistencia, lógica del backend y lógica de la vista -->
-    <script src="../../backend/src/helpers/PersistenciaJSON.js"></script>
-    <script src="../../backend/src/helpers/GestorUsuarios.js"></script>
-    <script src="../../backend/src/pedidos/PedidosModel.js"></script>
-    <script src="../../backend/src/pedidos/PedidosController.js"></script>
-    <script src="../js/pedidosView.js"></script>
+    <script src="/js/persistenciaCliente.js"></script>
+    <script src="/logica/pedidos/PedidosModel.js"></script>
+    <script src="/logica/pedidos/PedidosController.js"></script>
+    <script src="/js/pedidosView.js"></script>
 </body>
 </html>
