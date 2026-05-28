@@ -34,7 +34,7 @@ class PedidosModel {
     async crearPedido(metodoPago = 'tarjeta', detallesEnvio = {}) {
         // 1. Sesión activa
         const sesion = await this.persistencia.leerArchivo(this.ARCHIVO_SESION);
-        if (!sesion) {
+        if (!sesion || !sesion.id) {
             return { exito: false, mensaje: 'No hay sesión activa. Por favor inicia sesión.' };
         }
 

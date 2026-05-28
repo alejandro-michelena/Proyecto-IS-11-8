@@ -23,10 +23,10 @@
                 </div>
             </div>
             <ul class="sidebar-menu">
-                <li class="menu-item"><a href="catalogo.html"><i class="fa-solid fa-cube"></i> Catalogo</a></li>
-                <li class="menu-item"><a href="agregar-producto.html"><i class="fa-solid fa-plus-circle"></i> Agregar Producto</a></li>
-                <li class="menu-item active"><a href="#"><i class="fa-solid fa-list-check"></i> Pedidos</a></li>
-                <li class="menu-item"><a href="gestionPerfil.html"><i class="fa-solid fa-user"></i> Mi Perfil</a></li>
+                <li class="menu-item" id="menu-catalogo"><a href="catalogo.html"><i class="fa-solid fa-cube"></i> Catalogo</a></li>
+                <li class="menu-item" id="menu-agregar"><a href="agregar-producto.html"><i class="fa-solid fa-plus-circle"></i> Agregar Producto</a></li>
+                <li class="menu-item active" id="menu-pedidos"><a href="#"><i class="fa-solid fa-list-check"></i> Pedidos</a></li>
+                <li class="menu-item" id="menu-perfil"><a href="gestionPerfil.html"><i class="fa-solid fa-user"></i> Mi Perfil</a></li>
             </ul>
             <div class="sidebar-footer">
                 <a href="index.html" class="logout-button"><i class="fa-solid fa-sign-out-alt"></i> Cerrar Sesion</a>
@@ -93,6 +93,7 @@
         </div>
     </div>
     <script src="/js/persistenciaCliente.js"></script>
+    <script src="/elementosJS/sidebarController.js"></script>
     <script src="/logica/pedidos/PedidosModel.js"></script>
     <script src="/logica/pedidos/PedidosController.js"></script>
     <script src="/js/pedidosView.js"></script>

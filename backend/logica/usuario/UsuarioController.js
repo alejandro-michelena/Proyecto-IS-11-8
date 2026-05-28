@@ -75,7 +75,6 @@ class UsuarioController {
         const usuario = await UsuarioModel.verificarCredenciales(email, password);
 
         if (usuario) {
-            // Guardar sesión en disco para que todos los módulos la lean igual
             const persistencia = new PersistenciaCliente();
             await persistencia.escribirArchivo('sesion.json', {
                 id:     usuario.id,
@@ -94,7 +93,7 @@ class UsuarioController {
         const persistencia = new PersistenciaCliente();
         const sesion = await persistencia.leerArchivo('sesion.json');
 
-        if (!sesion) {
+        if (!sesion || !sesion.id) {
             window.location.href = 'index.html';
             return;
         }

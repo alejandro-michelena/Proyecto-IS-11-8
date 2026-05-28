@@ -21,6 +21,8 @@ app.use('/styles', express.static(path.join(__dirname, '../frontend/styles')));
 app.use('/js', express.static(path.join(__dirname, '../frontend/js')));
 // Lógica del backend expuesta al browser (logica con "a")
 app.use('/logica', express.static(path.join(__dirname, 'logica')));
+// ElementosJS
+app.use('/elementosJS', express.static(path.join(__dirname, 'elementosJS')));
 
 // ── API de Persistencia ────────────────────────────────────────
 app.get('/api/leer/:archivo', (req, res) => {

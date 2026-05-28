@@ -22,10 +22,10 @@
                 </div>
             </div>
             <ul class="sidebar-menu">
-                <li class="menu-item"><a href="catalogo.html"><i class="fa-solid fa-cube"></i> Catalogo</a></li>
-                <li class="menu-item active"><a href="#"><i class="fa-solid fa-plus-circle"></i> Agregar Producto</a></li>
-                <li class="menu-item"><a href="gestionPedidos.html"><i class="fa-solid fa-list-check"></i> Pedidos</a></li>
-                <li class="menu-item"><a href="gestionPerfil.html"><i class="fa-solid fa-user"></i> Mi Perfil</a></li>
+                <li class="menu-item" id="menu-catalogo"><a href="catalogo.html"><i class="fa-solid fa-cube"></i> Catalogo</a></li>
+                <li class="menu-item active" id="menu-agregar"><a href="#"><i class="fa-solid fa-plus-circle"></i> Agregar Producto</a></li>
+                <li class="menu-item" id="menu-pedidos"><a href="gestionPedidos.html"><i class="fa-solid fa-list-check"></i> Pedidos</a></li>
+                <li class="menu-item" id="menu-perfil"><a href="gestionPerfil.html"><i class="fa-solid fa-user"></i> Mi Perfil</a></li>
             </ul>
             <div class="sidebar-footer">
                 <a href="index.html" class="logout-button"><i class="fa-solid fa-sign-out-alt"></i> Cerrar Sesion</a>
@@ -94,6 +94,7 @@
         </main>
     </div>
     <script src="/js/persistenciaCliente.js"></script>
+    <script src="/elementosJS/sidebarController.js"></script>
     <script src="/logica/producto/GestorProductos.js"></script>
     <script src="/logica/producto/agregar-producto.js"></script>
 </body>

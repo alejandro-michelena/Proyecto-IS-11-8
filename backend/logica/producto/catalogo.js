@@ -14,7 +14,7 @@ class GestorCatalogo {
 
     async verificarSesion() {
         const sesion = await this.persistencia.leerArchivo(this.ARCHIVO_SESION);
-        if (!sesion) {
+        if (!sesion || !sesion.id) {
             window.location.href = 'index.html';
             return null;
         }

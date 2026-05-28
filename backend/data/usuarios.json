@@ -22,5 +22,13 @@
     "password": "ale123.",
     "rol": "admin",
     "fechaRegistro": "2026-05-28T00:12:45.561Z"
+  },
+  {
+    "id": 2,
+    "nombre": "Cliente PruebaX",
+    "email": "cliente1@est.ucab.edu.ve",
+    "password": "ale123.",
+    "rol": "cliente",
+    "fechaRegistro": "2026-05-28T18:05:50.386Z"
   }
 ]

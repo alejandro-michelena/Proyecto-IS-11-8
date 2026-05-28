@@ -21,7 +21,7 @@ class InterfazAgregarProducto {
     async verificarSesion() {
         const persistencia = new PersistenciaCliente();
         const sesion = await persistencia.leerArchivo('sesion.json');
-        if (!sesion) {
+        if (!sesion || !sesion.id) {
             window.location.href = 'index.html';
         }
     }
