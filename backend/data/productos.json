@@ -1,0 +1,15 @@
+[
+  {
+    "id": "prod_001",
+    "nombre": "Golden Pro",
+    "categoria": "whey_protein",
+    "marca": "optimum_nutrition",
+    "precio": 20,
+    "stock": 96,
+    "descripcion": "",
+    "imagen": null,
+    "calificacion": 0,
+    "fechaCreacion": "2026-05-28T01:33:03.043Z",
+    "estado": "publicado"
+  }
+]

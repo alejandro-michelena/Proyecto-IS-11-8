@@ -1,0 +1,90 @@
+[
+  {
+    "id": "PED-1779932060898",
+    "fecha": "2026-05-28T01:34:20.898Z",
+    "items": [
+      {
+        "idProducto": "prod_001",
+        "nombre": "Golden Pro",
+        "precioUnitario": 20,
+        "cantidad": 1,
+        "subtotal": 20
+      }
+    ],
+    "subtotalNeto": 20,
+    "iva": 3.2,
+    "total": 23.2,
+    "estado": "pendiente",
+    "metodoPago": "tarjeta",
+    "detallesEnvio": {
+      "direccion": "Av. Las Palmas 456, Caracas",
+      "telefono": "0412-0000000"
+    }
+  },
+  {
+    "id": "PED-1779932081390",
+    "fecha": "2026-05-28T01:34:41.390Z",
+    "items": [
+      {
+        "idProducto": "prod_001",
+        "nombre": "Golden Pro",
+        "precioUnitario": 20,
+        "cantidad": 1,
+        "subtotal": 20
+      }
+    ],
+    "subtotalNeto": 20,
+    "iva": 3.2,
+    "total": 23.2,
+    "estado": "pendiente",
+    "metodoPago": "tarjeta",
+    "detallesEnvio": {
+      "direccion": "Av. Las Palmas 456, Caracas",
+      "telefono": "0412-0000000"
+    }
+  },
+  {
+    "id": "PED-1779932238123",
+    "fecha": "2026-05-28T01:37:18.123Z",
+    "items": [
+      {
+        "idProducto": "prod_001",
+        "nombre": "Golden Pro",
+        "precioUnitario": 20,
+        "cantidad": 1,
+        "subtotal": 20
+      }
+    ],
+    "subtotalNeto": 20,
+    "iva": 3.2,
+    "total": 23.2,
+    "estado": "pendiente",
+    "metodoPago": "tarjeta",
+    "detallesEnvio": {
+      "direccion": "Av. Las Palmas 456, Caracas",
+      "telefono": "0412-0000000"
+    }
+  },
+  {
+    "id": "PED-1779932343155",
+    "fecha": "2026-05-28T01:39:03.155Z",
+    "items": [
+      {
+        "idProducto": "prod_001",
+        "nombre": "Golden Pro",
+        "precioUnitario": 20,
+        "cantidad": 1,
+        "subtotal": 20
+      }
+    ],
+    "subtotalNeto": 20,
+    "iva": 3.2,
+    "total": 23.2,
+    "estado": "pendiente",
+    "metodoPago": "tarjeta",
+    "detallesEnvio": {
+      "direccion": "Av. Las Palmas 456, Caracas",
+      "telefono": "0412-0000000"
+    }
+  }
+]
