@@ -1,9 +1,4 @@
-/**
- * CarritoModel
- * ────────────
- * Lógica de negocio del carrito de compras.
- * Depende de: PersistenciaCliente
- */
+
 class CarritoModel {
     constructor() {
         this.persistencia      = new PersistenciaCliente();

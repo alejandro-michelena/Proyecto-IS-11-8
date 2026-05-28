@@ -1,0 +1,26 @@
+[
+  {
+    "id": "PED-1779932561394",
+    "clienteId": 2,
+    "clienteNombre": "Diego Rodriguez",
+    "fecha": "2026-05-28T01:42:41.394Z",
+    "items": [
+      {
+        "idProducto": "prod_001",
+        "nombre": "Creatina",
+        "precioUnitario": 12,
+        "cantidad": 3,
+        "subtotal": 36
+      }
+    ],
+    "subtotalNeto": 36,
+    "iva": 5.76,
+    "total": 41.76,
+    "estado": "pendiente",
+    "metodoPago": "tarjeta",
+    "detallesEnvio": {
+      "direccion": "Av. Las Palmas 456, Caracas",
+      "telefono": "0412-0000000"
+    }
+  }
+]

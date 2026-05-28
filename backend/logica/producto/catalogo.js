@@ -26,42 +26,6 @@ class GestorCatalogo {
         return await this.persistencia.leerArchivo(this.ARCHIVO_PRODUCTOS) || [];
     }
 
-    async obtenerCarrito() {
-        return await this.persistencia.leerArchivo(this.ARCHIVO_CARRITO) || [];
-    }
-
-    async guardarCarrito(carrito) {
-        return await this.persistencia.escribirArchivo(this.ARCHIVO_CARRITO, carrito);
-    }
-
-    async añadirAlCarrito(idProducto) {
-        const productos = await this.cargarProductos();
-        const producto = productos.find(p => p.id === idProducto);
-
-        if (!producto) return { exito: false, mensaje: 'Producto no encontrado.' };
-        if (producto.stock <= 0) return { exito: false, mensaje: 'No hay stock disponible para este producto.' };
-
-        const carrito = await this.obtenerCarrito();
-        const itemExistente = carrito.find(item => item.id === idProducto);
-
-        if (itemExistente) {
-            if (itemExistente.cantidad >= producto.stock) {
-                return { exito: false, mensaje: `No hay más unidades disponibles de ${producto.nombre}.` };
-            }
-            itemExistente.cantidad += 1;
-        } else {
-            carrito.push({
-                id:       producto.id,
-                nombre:   producto.nombre,
-                precio:   producto.precio,
-                cantidad: 1
-            });
-        }
-
-        await this.guardarCarrito(carrito);
-        return { exito: true, mensaje: `${producto.nombre} añadido al carrito.` };
-    }
-
     async obtenerFavoritos() {
         return await this.persistencia.leerArchivo(this.ARCHIVO_FAVORITOS) || [];
     }
@@ -95,44 +59,6 @@ class GestorCatalogo {
             (p.nombre.toLowerCase().includes(q) || (p.descripcion || '').toLowerCase().includes(q))
         );
     }
-
-    // ── Carrito UI helpers ──────────────────────────────
-
-    async calcularTotales() {
-        const carrito = await this.obtenerCarrito();
-        const subtotalNeto = carrito.reduce((acc, item) => acc + item.precio * item.cantidad, 0);
-        const iva   = Math.round(subtotalNeto * 0.16 * 100) / 100;
-        const total = Math.round((subtotalNeto + iva) * 100) / 100;
-        return { carrito, subtotalNeto, iva, total };
-    }
-
-    async cambiarCantidadItem(idProducto, delta) {
-        const productos = await this.cargarProductos();
-        const producto  = productos.find(p => p.id === idProducto);
-        const carrito   = await this.obtenerCarrito();
-        const item      = carrito.find(i => i.id === idProducto);
-
-        if (!item) return { exito: false, mensaje: 'Item no encontrado en el carrito.' };
-
-        const nuevaCantidad = item.cantidad + delta;
-
-        if (nuevaCantidad <= 0) {
-            const idx = carrito.indexOf(item);
-            carrito.splice(idx, 1);
-        } else {
-            if (producto && nuevaCantidad > producto.stock) {
-                return { exito: false, mensaje: 'No hay suficiente stock disponible.' };
-            }
-            item.cantidad = nuevaCantidad;
-        }
-
-        await this.guardarCarrito(carrito);
-        return { exito: true };
-    }
-
-    async vaciarCarrito() {
-        await this.guardarCarrito([]);
-    }
 }
 
 // ══════════════════════════════════════════════════════════════════
@@ -157,8 +83,6 @@ class InterfazCatalogo {
         await this.renderizarProductos();
         this.configurarFiltros();
         this.configurarBusqueda();
-        this.configurarCarritoModal();
-        this.configurarBotonPagar();
     }
 
     generarEstrellas(cal = 0) {
@@ -231,8 +155,9 @@ class InterfazCatalogo {
     configurarBotonesAnadir() {
         document.querySelectorAll('.boton-anadir').forEach(btn => {
             btn.addEventListener('click', async () => {
-                const id  = btn.getAttribute('data-id');
-                const res = await this.gestor.añadirAlCarrito(id);
+                const id = btn.getAttribute('data-id');
+                const modelo = new CarritoModel(); 
+                const res = await modelo.agregarItem(id);
                 this.mostrarToast(res.mensaje, res.exito ? 'exito' : 'error');
             });
         });
@@ -298,113 +223,6 @@ class InterfazCatalogo {
         });
         this.configurarBotonesFavorito();
         this.configurarBotonesAnadir();
-    }
-
-    // ── Modal Carrito ────────────────────────────────────
-
-    configurarCarritoModal() {
-        this.botonVerCarrito?.querySelector('a')?.addEventListener('click', async (e) => {
-            e.preventDefault();
-            await this.abrirCarrito();
-        });
-        // También el <li> completo
-        this.botonVerCarrito?.addEventListener('click', async (e) => {
-            e.preventDefault();
-            await this.abrirCarrito();
-        });
-
-        this.botonCerrarCarrito?.addEventListener('click', () => this.cerrarCarrito());
-
-        window.addEventListener('click', (e) => {
-            if (e.target === this.modalCarrito) this.cerrarCarrito();
-        });
-
-        this.botonVaciar?.addEventListener('click', async () => {
-            if (confirm('¿Vaciar el carrito?')) {
-                await this.gestor.vaciarCarrito();
-                await this.renderizarTablaCarrito();
-            }
-        });
-    }
-
-    async abrirCarrito() {
-        await this.renderizarTablaCarrito();
-        this.modalCarrito?.classList.add('modal-carrito-activo');
-    }
-
-    cerrarCarrito() {
-        this.modalCarrito?.classList.remove('modal-carrito-activo');
-    }
-
-    async renderizarTablaCarrito() {
-        const tbody = document.getElementById('contenedor-items-carrito');
-        if (!tbody) return;
-
-        const { carrito, subtotalNeto, iva, total } = await this.gestor.calcularTotales();
-        tbody.innerHTML = '';
-
-        if (carrito.length === 0) {
-            tbody.innerHTML = `<tr><td colspan="5" style="text-align:center;padding:20px;color:#94a3b8;">El carrito está vacío.</td></tr>`;
-        } else {
-            carrito.forEach(item => {
-                const fila = document.createElement('tr');
-                fila.innerHTML = `
-                    <td>${item.nombre}</td>
-                    <td>$${item.precio.toFixed(2)}</td>
-                    <td>
-                        <div style="display:flex;align-items:center;gap:8px;">
-                            <button class="btn-cantidad" data-id="${item.id}" data-delta="-1" style="border:none;background:#f1f5f9;border-radius:6px;width:26px;height:26px;cursor:pointer;font-size:16px;">−</button>
-                            <span>${item.cantidad}</span>
-                            <button class="btn-cantidad" data-id="${item.id}" data-delta="1" style="border:none;background:#f1f5f9;border-radius:6px;width:26px;height:26px;cursor:pointer;font-size:16px;">+</button>
-                        </div>
-                    </td>
-                    <td>$${(item.precio * item.cantidad).toFixed(2)}</td>
-                    <td>
-                        <button class="btn-eliminar-item" data-id="${item.id}" style="border:none;background:#fee2e2;color:#ef4444;border-radius:8px;padding:5px 10px;cursor:pointer;">
-                            <i class="fa-solid fa-trash"></i>
-                        </button>
-                    </td>
-                `;
-                tbody.appendChild(fila);
-            });
-        }
-
-        document.getElementById('total-neto').textContent  = `$${subtotalNeto.toFixed(2)}`;
-        document.getElementById('total-iva').textContent   = `$${iva.toFixed(2)}`;
-        document.getElementById('gran-total').textContent  = `$${total.toFixed(2)}`;
-
-        // Botones +/−
-        document.querySelectorAll('.btn-cantidad').forEach(btn => {
-            btn.addEventListener('click', async () => {
-                const id    = btn.getAttribute('data-id');
-                const delta = parseInt(btn.getAttribute('data-delta'));
-                const res   = await this.gestor.cambiarCantidadItem(id, delta);
-                if (!res.exito) this.mostrarToast(res.mensaje, 'error');
-                await this.renderizarTablaCarrito();
-            });
-        });
-
-        // Botones eliminar
-        document.querySelectorAll('.btn-eliminar-item').forEach(btn => {
-            btn.addEventListener('click', async () => {
-                const id = btn.getAttribute('data-id');
-                await this.gestor.cambiarCantidadItem(id, -9999);
-                await this.renderizarTablaCarrito();
-            });
-        });
-    }
-
-    configurarBotonPagar() {
-        const btnPagar     = document.getElementById('boton-proceder-pago');
-        const btnPagarTest = document.getElementById('btn-pagar-test');
-
-        const ejecutar = (e) => {
-            e.preventDefault();
-            window.ejecutarCheckout?.();
-        };
-
-        btnPagar?.addEventListener('click', ejecutar);
-        btnPagarTest?.addEventListener('click', ejecutar);
     }
 
     mostrarToast(mensaje, tipo = 'exito') {
