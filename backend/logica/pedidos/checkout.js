@@ -16,40 +16,59 @@ window.ejecutarCheckout = async function () {
         return;
     }
 
-    const confirmar = confirm('¿Deseas confirmar tu compra y generar el pedido?');
-    if (!confirmar) return;
+    CheckoutView.inyectarModal();
 
-    const direccion = prompt('Ingresa tu dirección de envío:', 'Av. Las Palmas 456, Caracas');
-    if (direccion === null) return;
+    const modal = document.getElementById('vita-modal-checkout');
+    const form = document.getElementById('vita-form-checkout');
+    const btnCancelar = document.getElementById('vita-btn-cancelar');
 
-    const telefono = prompt('Ingresa tu número de teléfono:', '0412-0000000');
-    if (telefono === null) return;
+    setTimeout(() => modal.classList.add('active'), 10);
 
-    const ctrl = new PedidosController();
-    const resultado = await ctrl.procesarCompra('tarjeta', {
-        direccion: direccion.trim() || 'No especificada',
-        telefono:  telefono.trim()  || 'No especificado'
+    btnCancelar.addEventListener('click', () => {
+        modal.classList.remove('active');
+        setTimeout(() => modal.remove(), 300);
     });
 
-    if (resultado.exito) {
-        alert('¡Compra exitosa! ' + resultado.mensaje);
-        window.location.href = 'gestionPedidos.html';
-    } else {
-        alert('Error al realizar la compra: ' + resultado.mensaje);
-    }
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const direccionInput = document.getElementById('vita-input-direccion').value;
+        const telefonoInput = document.getElementById('vita-input-telefono').value;
+
+        const btnPagar = form.querySelector('.vita-btn-pagar');
+        btnPagar.disabled = true;
+        btnPagar.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Procesando...';
+
+        const ctrl = new PedidosController();
+        const resultado = await ctrl.procesarCompra('tarjeta', {
+            direccion: direccionInput.trim() || 'No especificada',
+            telefono: telefonoInput.trim() || 'No especificado'
+        });
+
+        if (resultado.exito) {
+            // Pasamos una función anidada que se ejecutará SOLO cuando el usuario presione el botón OK
+            CheckoutView.mostrarExito(modal, 'Tu orden ha sido procesada con éxito.', () => {
+                modal.classList.remove('active');
+                setTimeout(() => {
+                    modal.remove();
+                    window.location.href = 'catalogo.html';
+                }, 300);
+            });
+        } else {
+            alert('Error al realizar la compra: ' + resultado.mensaje);
+            btnPagar.disabled = false;
+            btnPagar.innerHTML = '<i class="fa-solid fa-credit-card"></i> Confirmar Procesamiento de Pedido';
+        }
+    });
 };
 
-// Compatibilidad: si el botón está en catalogo.html fuera del módulo de catálogo
 document.addEventListener('DOMContentLoaded', () => {
-    const btnPagar     = document.getElementById('boton-proceder-pago');
-    const btnPagarTest = document.getElementById('btn-pagar-test');
-
-    btnPagar?.addEventListener('click', (e) => {
+    document.getElementById('boton-proceder-pago')?.addEventListener('click', (e) => {
         e.preventDefault();
         window.ejecutarCheckout();
     });
 
-    btnPagarTest?.addEventListener('click', (e) => {
+    document.getElementById('btn-pagar-test')?.addEventListener('click', (e) => {
         e.preventDefault();
         window.ejecutarCheckout();
     });

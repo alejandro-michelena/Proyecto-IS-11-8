@@ -134,5 +134,77 @@
       "direccion": "Av. Las Palmas 456, Caracas",
       "telefono": "0412-0000000"
     }
+  },
+  {
+    "id": "PED-1780089136869",
+    "clienteId": 2,
+    "clienteNombre": "Cliente PruebaX",
+    "fecha": "2026-05-29T21:12:16.869Z",
+    "items": [
+      {
+        "idProducto": "prod_001",
+        "nombre": "Golden Pro",
+        "precioUnitario": 20,
+        "cantidad": 1,
+        "subtotal": 20
+      }
+    ],
+    "subtotalNeto": 20,
+    "iva": 3.2,
+    "total": 23.2,
+    "estado": "pendiente",
+    "metodoPago": "tarjeta",
+    "detallesEnvio": {
+      "direccion": "Av. Las Palmas 456, Caracas",
+      "telefono": "0412-3334445"
+    }
+  },
+  {
+    "id": "PED-1780090287726",
+    "clienteId": 2,
+    "clienteNombre": "Cliente PruebaX",
+    "fecha": "2026-05-29T21:31:27.726Z",
+    "items": [
+      {
+        "idProducto": "prod_001",
+        "nombre": "Golden Pro",
+        "precioUnitario": 20,
+        "cantidad": 2,
+        "subtotal": 40
+      }
+    ],
+    "subtotalNeto": 40,
+    "iva": 6.4,
+    "total": 46.4,
+    "estado": "pendiente",
+    "metodoPago": "tarjeta",
+    "detallesEnvio": {
+      "direccion": "Prados del Este, Calle el pauji, quinta pitimini",
+      "telefono": "04123170007"
+    }
+  },
+  {
+    "id": "PED-1780090792406",
+    "clienteId": 2,
+    "clienteNombre": "Cliente PruebaX",
+    "fecha": "2026-05-29T21:39:52.406Z",
+    "items": [
+      {
+        "idProducto": "prod_001",
+        "nombre": "Golden Pro",
+        "precioUnitario": 20,
+        "cantidad": 3,
+        "subtotal": 60
+      }
+    ],
+    "subtotalNeto": 60,
+    "iva": 9.6,
+    "total": 69.6,
+    "estado": "pendiente",
+    "metodoPago": "tarjeta",
+    "detallesEnvio": {
+      "direccion": "Cafetal, Urbanizacion Santa Marta",
+      "telefono": "04245555555"
+    }
   }
 ]

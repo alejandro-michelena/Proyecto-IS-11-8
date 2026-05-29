@@ -1,1 +1,8 @@
-[]
+[
+  {
+    "id": "prod_001",
+    "nombre": "Golden Pro",
+    "precio": 20,
+    "cantidad": 1
+  }
+]
