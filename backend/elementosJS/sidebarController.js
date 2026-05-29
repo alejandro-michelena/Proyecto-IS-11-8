@@ -28,13 +28,11 @@ class SidebarController {
         const itemPedidos = document.getElementById('menu-pedidos');
         const itemPerfil  = document.getElementById('menu-perfil');
         const itemCarrito = document.getElementById('menu-carrito');
-        const botonPagarTest = document.getElementById('btn-pagar-test');
 
         if (rol === 'admin') {
             // Ocultar las funciones de cliente
             if (itemCarrito) itemCarrito.style.display = 'none';
             if (itemPerfil)  itemPerfil.style.display = 'none';
-            if (botonPagarTest) botonPagarTest.style.display = 'none';
         } 
         else if (rol === 'cliente') {
             // Ocultar las funciones de admin

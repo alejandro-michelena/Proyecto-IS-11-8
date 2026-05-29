@@ -29,46 +29,19 @@ window.ejecutarCheckout = async function () {
         setTimeout(() => modal.remove(), 300);
     });
 
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-
-        const direccionInput = document.getElementById('vita-input-direccion').value;
-        const telefonoInput = document.getElementById('vita-input-telefono').value;
-
-        const btnPagar = form.querySelector('.vita-btn-pagar');
-        btnPagar.disabled = true;
-        btnPagar.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Procesando...';
-
-        const ctrl = new PedidosController();
-        const resultado = await ctrl.procesarCompra('tarjeta', {
-            direccion: direccionInput.trim() || 'No especificada',
-            telefono: telefonoInput.trim() || 'No especificado'
-        });
-
-        if (resultado.exito) {
-            // Pasamos una función anidada que se ejecutará SOLO cuando el usuario presione el botón OK
-            CheckoutView.mostrarExito(modal, 'Tu orden ha sido procesada con éxito.', () => {
-                modal.classList.remove('active');
-                setTimeout(() => {
-                    modal.remove();
-                    window.location.href = 'catalogo.html';
-                }, 300);
-            });
-        } else {
-            alert('Error al realizar la compra: ' + resultado.mensaje);
-            btnPagar.disabled = false;
-            btnPagar.innerHTML = '<i class="fa-solid fa-credit-card"></i> Confirmar Procesamiento de Pedido';
-        }
-    });
+    if (resultado.exito) {
+        alert('¡Compra exitosa! ' + resultado.mensaje);
+        // window.location.href = 'gestionPedidos.html'; // Redirección desactivada por requerimiento
+        window.location.reload(); // Recargar la página actual para limpiar el carrito visualmente
+    } else {
+        alert('Error al realizar la compra: ' + resultado.mensaje);
+    }
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('boton-proceder-pago')?.addEventListener('click', (e) => {
-        e.preventDefault();
-        window.ejecutarCheckout();
-    });
+    const btnPagar     = document.getElementById('boton-proceder-pago');
 
-    document.getElementById('btn-pagar-test')?.addEventListener('click', (e) => {
+    btnPagar?.addEventListener('click', (e) => {
         e.preventDefault();
         window.ejecutarCheckout();
     });
