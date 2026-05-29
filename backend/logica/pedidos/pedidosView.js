@@ -95,9 +95,11 @@ class InterfazPedidos {
                     <button class="btn-accion-ped completar" data-id="${pedido.id}">
                         <i class="fa-solid fa-check"></i> Completar
                     </button>
+                    <!-- Funcionalidad de cancelar comentada por requerimiento:
                     <button class="btn-accion-ped cancelar" data-id="${pedido.id}">
                         <i class="fa-solid fa-ban"></i> Cancelar
                     </button>
+                    -->
                 `;
             }
 
@@ -163,6 +165,7 @@ class InterfazPedidos {
             });
         });
 
+        /* Funcionalidad de cancelar comentada por requerimiento
         document.querySelectorAll('.btn-accion-ped.cancelar').forEach(btn => {
             btn.addEventListener('click', async () => {
                 const id = btn.getAttribute('data-id');
@@ -173,6 +176,7 @@ class InterfazPedidos {
                 }
             });
         });
+        */
     }
 
     async abrirModalDetalle(pedidoId) {

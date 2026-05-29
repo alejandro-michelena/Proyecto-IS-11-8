@@ -33,7 +33,8 @@ window.ejecutarCheckout = async function () {
 
     if (resultado.exito) {
         alert('¡Compra exitosa! ' + resultado.mensaje);
-        window.location.href = 'gestionPedidos.html';
+        // window.location.href = 'gestionPedidos.html'; // Redirección desactivada por requerimiento
+        window.location.reload(); // Recargar la página actual para limpiar el carrito visualmente
     } else {
         alert('Error al realizar la compra: ' + resultado.mensaje);
     }
@@ -42,14 +43,8 @@ window.ejecutarCheckout = async function () {
 // Compatibilidad: si el botón está en catalogo.html fuera del módulo de catálogo
 document.addEventListener('DOMContentLoaded', () => {
     const btnPagar     = document.getElementById('boton-proceder-pago');
-    const btnPagarTest = document.getElementById('btn-pagar-test');
 
     btnPagar?.addEventListener('click', (e) => {
-        e.preventDefault();
-        window.ejecutarCheckout();
-    });
-
-    btnPagarTest?.addEventListener('click', (e) => {
         e.preventDefault();
         window.ejecutarCheckout();
     });
