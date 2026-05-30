@@ -9,14 +9,29 @@ class CarritoModel {
         this.persistencia      = new PersistenciaCliente();
         this.ARCHIVO_CARRITO   = 'carrito.json';
         this.ARCHIVO_PRODUCTOS = 'productos.json';
+        this.ARCHIVO_SESION    = 'sesion.json'; 
+    }
+
+    // Método privado para obtener el ID del usuario actual
+    async _obtenerIdUsuario() {
+        const sesion = await this.persistencia.leerArchivo(this.ARCHIVO_SESION);
+        return sesion ? sesion.id : null;
     }
 
     async obtenerCarrito() {
-        return await this.persistencia.leerArchivo(this.ARCHIVO_CARRITO) || [];
+        const userId = await this._obtenerIdUsuario();
+        const dataCompleta = await this.persistencia.leerArchivo(this.ARCHIVO_CARRITO) || {};
+        return dataCompleta[userId] || []; 
+        // Devuelve solo el carrito de este usuario
     }
 
-    async guardarCarrito(carrito) {
-        return await this.persistencia.escribirArchivo(this.ARCHIVO_CARRITO, carrito);
+    async guardarCarrito(carritoUsuario) {
+        const userId = await this._obtenerIdUsuario();
+        const dataCompleta = await this.persistencia.leerArchivo(this.ARCHIVO_CARRITO) || {};
+        
+        dataCompleta[userId] = carritoUsuario;
+        
+        return await this.persistencia.escribirArchivo(this.ARCHIVO_CARRITO, dataCompleta);
     }
 
     async agregarItem(idProducto) {
@@ -76,8 +91,10 @@ class CarritoModel {
     }
 
     async vaciar() {
-        await this.guardarCarrito([]);
-        return { exito: true, mensaje: 'Carrito vaciado.' };
+        const userId = await this._obtenerIdUsuario();
+        const dataCompleta = await this.persistencia.leerArchivo(this.ARCHIVO_CARRITO) || {};
+        dataCompleta[userId] = [];
+        return await this.persistencia.escribirArchivo(this.ARCHIVO_CARRITO, dataCompleta);
     }
 
     async calcularTotales() {

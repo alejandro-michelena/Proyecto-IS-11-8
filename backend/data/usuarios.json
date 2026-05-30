@@ -16,7 +16,7 @@
     "fechaRegistro": "2026-05-28T00:12:40.561Z"
   },
   {
-    "id": 1,
+    "id": 3,
     "nombre": "Admin1 Michelena",
     "email": "ahmichelena.24@est.ucab.edu.ve",
     "password": "ale123.",
@@ -24,7 +24,7 @@
     "fechaRegistro": "2026-05-28T00:12:45.561Z"
   },
   {
-    "id": 2,
+    "id": 4,
     "nombre": "Cliente PruebaX",
     "email": "cliente1@est.ucab.edu.ve",
     "password": "ale123.",

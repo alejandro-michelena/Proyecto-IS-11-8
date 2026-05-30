@@ -37,10 +37,11 @@ class UsuarioModel {
         const existe = usuarios.some(u => u.email.toLowerCase() === email.toLowerCase().trim());
         if (existe) return false;
 
-        const nuevoId = usuarios.length > 0
-            ? usuarios[usuarios.length - 1].id + 1
-            : 1;
-
+        const maxId = usuarios.length > 0 
+            ? Math.max(...usuarios.map(u => u.id)) 
+            : 0;
+        const nuevoId = maxId + 1;
+        // ---------------------------
         const nuevoUsuario = {
             id: nuevoId,
             nombre: nombre.trim(),

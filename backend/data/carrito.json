@@ -1,8 +1,52 @@
-[
-  {
-    "id": "prod_001",
-    "nombre": "Golden Pro",
-    "precio": 20,
-    "cantidad": 1
-  }
-]
+{
+  "1": [
+    {
+      "id": "prod_001",
+      "nombre": "Golden Pro",
+      "precio": 20,
+      "cantidad": 2
+    },
+    {
+      "id": "prod_002",
+      "nombre": "Creatina",
+      "precio": 12,
+      "cantidad": 1
+    }
+  ],
+  "2": [
+    {
+      "id": "prod_001",
+      "nombre": "Golden Pro",
+      "precio": 20,
+      "cantidad": 1
+    }
+  ],
+  "3": [
+    {
+      "id": "prod_003",
+      "nombre": "Proteina Sascha Fitness 1kg",
+      "precio": 100,
+      "cantidad": 1
+    },
+    {
+      "id": "prod_004",
+      "nombre": "Beta-alanina",
+      "precio": 20,
+      "cantidad": 2
+    }
+  ],
+  "4": [
+    {
+      "id": "prod_003",
+      "nombre": "Proteina Sascha Fitness 1kg",
+      "precio": 100,
+      "cantidad": 1
+    },
+    {
+      "id": "prod_001",
+      "nombre": "Golden Pro",
+      "precio": 20,
+      "cantidad": 1
+    }
+  ]
+}

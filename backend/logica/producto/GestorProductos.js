@@ -1,11 +1,3 @@
-/**
- * GestorProductos
- * ───────────────
- * Lógica de negocio para gestionar el catálogo de productos.
- * Todas las operaciones son async porque usan PersistenciaCliente (fetch).
- *
- * Depende de: PersistenciaCliente
- */
 class GestorProductos {
     constructor() {
         this.persistencia        = new PersistenciaCliente();
@@ -38,9 +30,17 @@ class GestorProductos {
         return 'prod_' + contador.contador.toString().padStart(3, '0');
     }
 
+    async verificarExistencia(nombre) {
+        const productos = await this.cargarProductos();
+        const existe = productos.some(
+            p => p.nombre.trim().toLowerCase() === nombre.trim().toLowerCase()
+        );
+        return { existe };
+    }
+
     async publicarProducto(datosProducto) {
         if (!datosProducto.nombre || !datosProducto.categoria || !datosProducto.precio || datosProducto.stock === undefined) {
-            return { exito: false, mensaje: 'Faltan campos obligatorios: nombre, categoría, precio y stock son requeridos.' };
+            return { exito: false, mensaje: 'Faltan campos obligatorios: nombre, categoria, precio y stock son requeridos.' };
         }
         if (datosProducto.precio <= 0) {
             return { exito: false, mensaje: 'El precio debe ser mayor a cero.' };
@@ -49,24 +49,29 @@ class GestorProductos {
             return { exito: false, mensaje: 'El stock no puede ser negativo.' };
         }
 
+        const { existe } = await this.verificarExistencia(datosProducto.nombre);
+        if (existe) {
+            return { exito: false, mensaje: 'Ya existe un producto con ese nombre en el catalogo.' };
+        }
+
         const productos = await this.cargarProductos();
         const nuevoProducto = {
             id: await this.generarId(),
-            nombre:       datosProducto.nombre,
-            categoria:    datosProducto.categoria,
-            marca:        datosProducto.marca        || '',
-            precio:       datosProducto.precio,
-            stock:        datosProducto.stock,
-            descripcion:  datosProducto.descripcion  || '',
-            imagen:       datosProducto.imagen        || null,
-            calificacion: 0,
+            nombre:        datosProducto.nombre,
+            categoria:     datosProducto.categoria,
+            marca:         datosProducto.marca       || '',
+            precio:        datosProducto.precio,
+            stock:         datosProducto.stock,
+            descripcion:   datosProducto.descripcion || '',
+            imagen:        datosProducto.imagen       || null,
+            calificacion:  0,
             fechaCreacion: new Date().toISOString(),
-            estado: 'publicado'
+            estado:        'publicado'
         };
 
         productos.push(nuevoProducto);
         await this.guardarProductos(productos);
-        return { exito: true, mensaje: '¡Producto publicado exitosamente!', producto: nuevoProducto };
+        return { exito: true, mensaje: 'Producto publicado exitosamente!', producto: nuevoProducto };
     }
 
     async guardarComoBorrador(datosProducto) {
@@ -77,16 +82,16 @@ class GestorProductos {
         const borradores = await this.cargarBorradores();
         const borrador = {
             id: await this.generarId(),
-            nombre:       datosProducto.nombre,
-            categoria:    datosProducto.categoria    || '',
-            marca:        datosProducto.marca        || '',
-            precio:       datosProducto.precio       || 0,
-            stock:        datosProducto.stock        || 0,
-            descripcion:  datosProducto.descripcion  || '',
-            imagen:       datosProducto.imagen        || null,
-            calificacion: 0,
+            nombre:        datosProducto.nombre,
+            categoria:     datosProducto.categoria   || '',
+            marca:         datosProducto.marca       || '',
+            precio:        datosProducto.precio      || 0,
+            stock:         datosProducto.stock       || 0,
+            descripcion:   datosProducto.descripcion || '',
+            imagen:        datosProducto.imagen       || null,
+            calificacion:  0,
             fechaCreacion: new Date().toISOString(),
-            estado: 'borrador'
+            estado:        'borrador'
         };
 
         borradores.push(borrador);
