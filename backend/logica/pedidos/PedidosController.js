@@ -9,19 +9,21 @@ class PedidosController {
     }
 
     async procesarCompra(metodoPago = 'tarjeta', detallesEnvio = {}) {
-        try {
-            if (detallesEnvio.direccion?.trim() === '') {
-                return { exito: false, mensaje: 'La dirección de envío es obligatoria.' };
-            }
-            if (detallesEnvio.telefono?.trim() === '') {
-                return { exito: false, mensaje: 'El teléfono de contacto es obligatorio.' };
-            }
-            return await this.model.crearPedido(metodoPago, detallesEnvio);
-        } catch (error) {
-            console.error('PedidosController.procesarCompra:', error);
-            return { exito: false, mensaje: 'Error inesperado al procesar la compra.' };
+    try {
+        if (!detallesEnvio.direccion || detallesEnvio.direccion.trim() === '') {
+            return { exito: false, mensaje: 'La dirección es obligatoria.' };
         }
+        
+        const soloNumeros = /^[0-9-]+$/;
+        if (!detallesEnvio.telefono || !soloNumeros.test(detallesEnvio.telefono)) {
+            return { exito: false, mensaje: 'El teléfono debe contener solo números.' };
+        }
+
+        return await this.model.crearPedido(metodoPago, detallesEnvio);
+    } catch (error) {
+        return { exito: false, mensaje: 'Error al procesar la compra.' };
     }
+}
 
     async obtenerTodosLosPedidos() {
         try {

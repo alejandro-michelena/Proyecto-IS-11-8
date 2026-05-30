@@ -25,6 +25,12 @@ class InterfazPedidos {
 
         this.filtroActivo   = 'todos';
         this.busquedaActiva = '';
+
+        document.addEventListener('click', (e) => {
+            if (e.target.closest('#cerrar-modal-detalle')) {
+                this.modalDetalle.classList.remove('modal-detalle-activo');
+            }
+        });
     }
 
     async inicializar() {
@@ -181,6 +187,8 @@ class InterfazPedidos {
 
     async abrirModalDetalle(pedidoId) {
         const pedido = await this.pedidosCtrl.model.obtenerPorId(pedidoId);
+
+        console.log("Modal encontrado:", this.modalDetalle);
         if (!pedido) {
             alert('No se pudo encontrar el pedido.');
             return;
@@ -251,19 +259,23 @@ class InterfazPedidos {
         this.modalDetalle.classList.add('modal-detalle-activo');
     }
 
-    configurarCierreModal() {
-        this.btnCerrarModal?.addEventListener('click', () => {
-            this.modalDetalle.classList.remove('modal-detalle-activo');
-        });
-        window.addEventListener('click', (e) => {
-            if (e.target === this.modalDetalle) {
-                this.modalDetalle.classList.remove('modal-detalle-activo');
-            }
-        });
-    }
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
+    const persistencia = new PersistenciaCliente();
+    const sesion = await persistencia.leerArchivo('sesion.json');
     const interfaz = new InterfazPedidos();
-    await interfaz.inicializar();
+    
+    // Obtener los pedidos según el rol
+    let pedidos = [];
+    if (sesion.rol === 'admin') {
+        // El admin ve todo
+        pedidos = await interfaz.pedidosCtrl.obtenerTodosLosPedidos();
+    } else {
+        // El cliente solo ve los suyos
+        pedidos = await interfaz.pedidosCtrl.obtenerPedidosDeCliente(sesion.id);
+    }
+    
+    // Ahora renderizas esos pedidos
+    await interfaz.renderizarVista(pedidos); 
 });

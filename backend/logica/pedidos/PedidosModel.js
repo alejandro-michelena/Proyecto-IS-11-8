@@ -32,16 +32,16 @@ class PedidosModel {
     }
 
     async crearPedido(metodoPago = 'tarjeta', detallesEnvio = {}) {
-        // 1. Sesión activa
+        // Sesion activa
         const sesion = await this.persistencia.leerArchivo(this.ARCHIVO_SESION);
-        if (!sesion || !sesion.id) {
-            return { exito: false, mensaje: 'No hay sesión activa. Por favor inicia sesión.' };
-        }
+        if (!sesion || !sesion.id) return { exito: false, mensaje: 'No hay sesión.' };
 
-        // 2. Carrito
-        const carrito = await this.persistencia.leerArchivo(this.ARCHIVO_CARRITO) || [];
+        // carrito
+        const dataCompleta = await this.persistencia.leerArchivo(this.ARCHIVO_CARRITO) || {};
+        const carrito = dataCompleta[sesion.id] || []; 
+
         if (carrito.length === 0) {
-            return { exito: false, mensaje: 'El carrito de compras está vacío.' };
+            return { exito: false, mensaje: 'El carrito está vacío.' };
         }
 
         // 3. Productos para verificar stock
@@ -106,9 +106,10 @@ class PedidosModel {
         await this.guardarPedidos(pedidos);
 
         // 9. Limpiar carrito
-        await this.persistencia.escribirArchivo(this.ARCHIVO_CARRITO, []);
+        dataCompleta[sesion.id] = []; // Solo vaciamos el carrito del usuario actual
+        await this.persistencia.escribirArchivo(this.ARCHIVO_CARRITO, dataCompleta);
 
-        return { exito: true, mensaje: '¡Pedido generado exitosamente!', pedido: nuevoPedido };
+        return { exito: true, mensaje: '¡Pedido generado exitosamente!' };
     }
 
     async actualizarEstado(pedidoId, nuevoEstado) {

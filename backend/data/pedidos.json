@@ -206,5 +206,132 @@
       "direccion": "Cafetal, Urbanizacion Santa Marta",
       "telefono": "04245555555"
     }
+  },
+  {
+    "id": "PED-1780112297590",
+    "clienteId": 4,
+    "clienteNombre": "Cliente PruebaX",
+    "fecha": "2026-05-30T03:38:17.590Z",
+    "items": [
+      {
+        "idProducto": "prod_003",
+        "nombre": "Proteina Sascha Fitness 1kg",
+        "precioUnitario": 100,
+        "cantidad": 2,
+        "subtotal": 200
+      },
+      {
+        "idProducto": "prod_001",
+        "nombre": "Golden Pro",
+        "precioUnitario": 20,
+        "cantidad": 4,
+        "subtotal": 80
+      }
+    ],
+    "subtotalNeto": 280,
+    "iva": 44.8,
+    "total": 324.8,
+    "estado": "pendiente",
+    "metodoPago": "tarjeta",
+    "detallesEnvio": {
+      "direccion": "tjxtjxtfjxtf",
+      "telefono": "04123333333"
+    }
+  },
+  {
+    "id": "PED-1780112723011",
+    "clienteId": 2,
+    "clienteNombre": "Diego Rodriguez",
+    "fecha": "2026-05-30T03:45:23.011Z",
+    "items": [
+      {
+        "idProducto": "prod_001",
+        "nombre": "Golden Pro",
+        "precioUnitario": 20,
+        "cantidad": 2,
+        "subtotal": 40
+      }
+    ],
+    "subtotalNeto": 40,
+    "iva": 6.4,
+    "total": 46.4,
+    "estado": "pendiente",
+    "metodoPago": "tarjeta",
+    "detallesEnvio": {
+      "direccion": "prueba2",
+      "telefono": "04121234567"
+    }
+  },
+  {
+    "id": "PED-1780112956622",
+    "clienteId": 4,
+    "clienteNombre": "Cliente PruebaX",
+    "fecha": "2026-05-30T03:49:16.622Z",
+    "items": [
+      {
+        "idProducto": "prod_001",
+        "nombre": "Golden Pro",
+        "precioUnitario": 20,
+        "cantidad": 1,
+        "subtotal": 20
+      }
+    ],
+    "subtotalNeto": 20,
+    "iva": 3.2,
+    "total": 23.2,
+    "estado": "pendiente",
+    "metodoPago": "tarjeta",
+    "detallesEnvio": {
+      "direccion": "Prueba 3",
+      "telefono": "04120000000"
+    }
+  },
+  {
+    "id": "PED-1780112970006",
+    "clienteId": 4,
+    "clienteNombre": "Cliente PruebaX",
+    "fecha": "2026-05-30T03:49:30.006Z",
+    "items": [
+      {
+        "idProducto": "prod_001",
+        "nombre": "Golden Pro",
+        "precioUnitario": 20,
+        "cantidad": 1,
+        "subtotal": 20
+      }
+    ],
+    "subtotalNeto": 20,
+    "iva": 3.2,
+    "total": 23.2,
+    "estado": "pendiente",
+    "metodoPago": "tarjeta",
+    "detallesEnvio": {
+      "direccion": "ewGRH",
+      "telefono": "RAHRHR"
+    }
+  },
+  {
+    "id": "PED-1780114944616",
+    "clienteId": 4,
+    "clienteNombre": "Cliente PruebaX",
+    "fecha": "2026-05-30T04:22:24.616Z",
+    "items": [
+      {
+        "idProducto": "prod_004",
+        "nombre": "Beta-alanina",
+        "precioUnitario": 20,
+        "cantidad": 1,
+        "subtotal": 20
+      }
+    ],
+    "subtotalNeto": 20,
+    "iva": 3.2,
+    "total": 23.2,
+    "estado": "pendiente",
+    "metodoPago": "tarjeta",
+    "detallesEnvio": {
+      "direccion": "Ultima prueba",
+      "telefono": "04125658998"
+    }
   }
 ]
