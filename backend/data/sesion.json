@@ -1,6 +1,6 @@
 {
-  "id": 4,
-  "nombre": "Cliente PruebaX",
-  "email": "cliente1@est.ucab.edu.ve",
-  "rol": "cliente"
+  "id": 3,
+  "nombre": "Admin1 Michelena",
+  "email": "ahmichelena.24@est.ucab.edu.ve",
+  "rol": "admin"
 }

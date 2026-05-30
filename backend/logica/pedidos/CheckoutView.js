@@ -78,6 +78,38 @@ class CheckoutView {
         document.body.insertAdjacentHTML('beforeend', modalHTML);
     }
 
+    static mostrarNotificacion(mensaje) {
+        const toast = document.createElement('div');
+        toast.className = 'notificacion-flotante';
+        toast.innerHTML = `
+            <i class="fa-solid fa-circle-check"></i>
+            <span>${mensaje}</span>
+        `;
+        document.body.appendChild(toast);
+
+        setTimeout(() => toast.classList.add('show'), 100);
+        setTimeout(() => {
+            toast.classList.remove('show');
+            setTimeout(() => toast.remove(), 300);
+        }, 3000);
+    }
+
+    static mostrarError(mensaje) {
+        const toast = document.createElement('div');
+        toast.className = 'notificacion-flotante error'; // Clase 'error' extra
+        toast.innerHTML = `
+            <i class="fa-solid fa-circle-xmark"></i>
+            <span>${mensaje}</span>
+        `;
+        document.body.appendChild(toast);
+
+        setTimeout(() => toast.classList.add('show'), 100);
+        setTimeout(() => {
+            toast.classList.remove('show');
+            setTimeout(() => toast.remove(), 300);
+        }, 3000);
+    }
+
     static mostrarExito(modal, mensaje, callbackAlCerrar) {
         const modalContenido = modal.querySelector('.vita-modal-content');
         modalContenido.innerHTML = `
