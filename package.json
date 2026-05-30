@@ -1,0 +1,11 @@
+{
+  "name": "vitassups-backend",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "scripts": {
+    "start": "node backend/server.js"
+  }
+}

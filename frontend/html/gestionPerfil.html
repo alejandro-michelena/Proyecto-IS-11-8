@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VITA-SUPPS - Mi Perfil</title>
+    <link rel="stylesheet" href="/styles/catalogo.css">
+    <link rel="stylesheet" href="/styles/perfil.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+</head>
+    <body>
+        <div class="admin-wrapper">
+            <nav class="sidebar">
+                <div class="sidebar-header">
+                    <div class="logo">
+                        <div class="icono-logo"><i class="fa-solid fa-leaf"></i></div>
+                        <h1 class="texto-logo">VITA-SUPPS</h1>
+                    </div>
+                    <div class="admin-profile">
+                        <i class="fa-solid fa-user-tie profile-icon"></i>
+                        <span class="admin-name">Cargando...</span>
+                    </div>
+                </div>
+                <ul class="sidebar-menu">
+                    <li class="menu-item" id="menu-catalogo"><a href="catalogo.html"><i class="fa-solid fa-cube"></i> Catálogo</a></li>
+                    <li class="menu-item" id="menu-agregar"><a href="agregar-producto.html"><i class="fa-solid fa-plus-circle"></i> Agregar Producto</a></li>
+                    <li class="menu-item" id="menu-pedidos"><a href="gestionPedidos.html"><i class="fa-solid fa-list-check"></i> Pedidos</a></li>
+                    <li class="menu-item active" id="menu-perfil"><a href="#"><i class="fa-solid fa-user"></i> Mi Perfil</a></li>
+                    <li class="menu-item" id="menu-carrito" id="menu-carrito"><a href="#"><i class="fa-solid fa-shopping-cart"></i> Ver Carrito</a></li>
+                </ul>
+                <div class="sidebar-footer">
+                    <a href="index.html" class="logout-button" id="btn-cerrar-sesion">
+                        <i class="fa-solid fa-sign-out-alt"></i> Cerrar Sesión
+                    </a>
+                </div>
+            </nav>
+
+            <main class="main-content">
+                <header class="cabecera-perfil">
+                    <h1 class="titulo-pagina">Mi Perfil</h1>
+                    <p class="subtitulo-pagina">Consulta la información de tu cuenta activa en la plataforma.</p>
+                </header>
+
+                <section class="contenedor-tarjeta-perfil">
+                    <div class="tarjeta-premium-perfil">
+                        <div class="avatar-perfil-seccion">
+                            <div class="circulo-avatar">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <h2 id="perfil-nombre">Cargando...</h2>
+                            <span class="badge-rol-perfil" id="perfil-rol-badge">CLIENTE</span>
+                        </div>
+
+                        <div class="bloque-detalles-usuario">
+                            <div class="fila-detalle">
+                                <div class="icono-detalle-perfil"><i class="fa-solid fa-envelope"></i></div>
+                                <div class="datos-detalle-perfil">
+                                    <span class="etiqueta-perfil">Correo Electrónico</span>
+                                    <span class="valor-perfil" id="perfil-email">---</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+        <div id="modal-carrito" class="modal-carrito-oculto">
+            <div class="contenido-modal">
+                <div class="cabecera-modal">
+                    <h2><i class="fa-solid fa-cart-shopping"></i> Tu Carrito</h2>
+                    <button id="boton-cerrar-carrito" class="boton-cerrar">&times;</button>
+                </div>
+                <div class="cuerpo-modal">
+                    <table class="tabla-carrito">
+                        <thead><tr><th>Producto</th><th>Precio</th><th>Cantidad</th><th>Subtotal</th><th>Acciones</th></tr></thead>
+                        <tbody id="contenedor-items-carrito"></tbody>
+                    </table>
+                </div>
+                <div class="pie-modal">
+                    <div class="bloque-totales">
+                        <p>Subtotal Neto: <span id="total-neto">$0.00</span></p>
+                        <p>IVA (16%): <span id="total-iva">$0.00</span></p>
+                        <hr>
+                        <p class="gran-total">Total a Pagar: <span id="gran-total">$0.00</span></p>
+                    </div>
+                    <div class="botones-globales">
+                        <button id="boton-vaciar-carrito" class="btn-app btn-secundario">
+                            <i class="fa-solid fa-trash-can"></i> Vaciar
+                        </button>
+                        <button id="boton-proceder-pago" class="btn-app btn-primario">
+                            <i class="fa-solid fa-credit-card"></i> Proceder al Pago
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="/helpers/persistenciaCliente.js"></script> 
+        <script src="/elementosJS/sidebarController.js"></script>
+        <script src="/logica/usuario/UsuarioModel.js"></script>
+        <script src="/logica/usuario/UsuarioController.js"></script>
+        <script src="/logica/carrito/CarritoModel.js"></script>
+        <script src="/logica/carrito/CarritoController.js"></script>
+
+        <script src="/logica/pedidos/PedidosModel.js"></script>
+        <script src="/logica/pedidos/PedidosController.js"></script>
+        <script src="/logica/pedidos/CheckoutView.js"></script>
+        <script src="/logica/pedidos/checkout.js"></script>
+    </body>
+</html>
