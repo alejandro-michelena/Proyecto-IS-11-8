@@ -1,46 +1,37 @@
+/*
+  server.js — Punto de entrada del servidor.
+
+  Configura Express, sirve los archivos estáticos del frontend y expone
+  la API REST de persistencia (/api/leer/:archivo, /api/escribir/:archivo).
+
+  Es el único proceso Node que corre; db.js es el único módulo que toca disco ********.
+*/
+
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { PersistenciaJSON } from './helpers/persistenciaJSON.js';
+import { db } from './src/db.js';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 const PORT = 3000;
-const persistencia = new PersistenciaJSON();
 
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
-// ── Archivos estáticos ─────────────────────────────────────────
-// HTML
-app.use(express.static(path.join(__dirname, '../frontend/html')));
-// CSS
-app.use('/styles', express.static(path.join(__dirname, '../frontend/styles')));
-// Ayudantes de backend expuestos al browser (como persistenciaCliente.js)
-app.use('/helpers', express.static(path.join(__dirname, 'helpers')));
-// Lógica del backend expuesta al browser (logica con "a")
-app.use('/logica', express.static(path.join(__dirname, 'logica')));
-// ElementosJS
-app.use('/elementosJS', express.static(path.join(__dirname, 'elementosJS')));
+app.use(express.static(path.join(__dirname, '../front/views')));
+app.use('/styles', express.static(path.join(__dirname, '../front/styles')));
+app.use('/js',     express.static(path.join(__dirname, '../front/js')));
+app.use('/src',    express.static(path.join(__dirname, './src')));
 
-// ── API de Persistencia ────────────────────────────────────────
 app.get('/api/leer/:archivo', (req, res) => {
-    const datos = persistencia.leerArchivo(req.params.archivo);
+    const datos = db.leer(req.params.archivo);
     res.json(datos ?? []);
 });
 
 app.post('/api/escribir/:archivo', (req, res) => {
-    const exito = persistencia.escribirArchivo(req.params.archivo, req.body);
-    if (exito) {
-        res.json({ mensaje: 'Guardado con éxito' });
-    } else {
-        res.status(500).json({ error: 'Error al escribir en el disco' });
-    }
+    const ok = db.escribir(req.params.archivo, req.body);
+    ok ? res.json({ ok: true }) : res.status(500).json({ ok: false });
 });
 
-app.listen(PORT, () => {
-    console.log(`\n🚀 Servidor corriendo en http://localhost:${PORT}`);
-    console.log(`📂 Datos en: backend/data/\n`);
-});
+app.listen(PORT, () => console.log(`\n🚀  http://localhost:${PORT}\n`));

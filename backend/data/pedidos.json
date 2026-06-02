@@ -333,5 +333,67 @@
       "direccion": "Ultima prueba",
       "telefono": "04125658998"
     }
+  },
+  {
+    "id": "PED-1780150147054",
+    "clienteId": 5,
+    "clienteNombre": "Maria Movalles",
+    "fecha": "2026-05-30T14:09:07.054Z",
+    "items": [
+      {
+        "idProducto": "prod_006",
+        "nombre": "Valeriana",
+        "precioUnitario": 1000,
+        "cantidad": 1,
+        "subtotal": 1000
+      }
+    ],
+    "subtotalNeto": 1000,
+    "iva": 160,
+    "total": 1160,
+    "estado": "pendiente",
+    "metodoPago": "tarjeta",
+    "detallesEnvio": {
+      "direccion": "calle el pauji, prados del este",
+      "telefono": "04123170007"
+    }
+  },
+  {
+    "id": "PED-1780431635799",
+    "clienteId": 4,
+    "clienteNombre": "Cliente PruebaX",
+    "fecha": "2026-06-02T20:20:35.799Z",
+    "items": [
+      {
+        "idProducto": "prod_001",
+        "nombre": "Golden Pro",
+        "precioUnitario": 20,
+        "cantidad": 1,
+        "subtotal": 20
+      },
+      {
+        "idProducto": "prod_005",
+        "nombre": "Proteina Isolatada Dymatize",
+        "precioUnitario": 120,
+        "cantidad": 1,
+        "subtotal": 120
+      },
+      {
+        "idProducto": "prod_006",
+        "nombre": "Valeriana",
+        "precioUnitario": 1000,
+        "cantidad": 1,
+        "subtotal": 1000
+      }
+    ],
+    "subtotalNeto": 1140,
+    "iva": 182.4,
+    "total": 1322.4,
+    "estado": "pendiente",
+    "metodoPago": "tarjeta",
+    "detallesEnvio": {
+      "direccion": "aaaaaaa",
+      "telefono": "04123170007"
+    }
   }
 ]

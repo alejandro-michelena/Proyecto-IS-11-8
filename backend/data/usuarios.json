@@ -30,5 +30,13 @@
     "password": "ale123.",
     "rol": "cliente",
     "fechaRegistro": "2026-05-28T18:05:50.386Z"
+  },
+  {
+    "id": 5,
+    "nombre": "Maria Movalles",
+    "email": "mperezpu@ucab.edu.ve",
+    "password": "ale123.",
+    "rol": "cliente",
+    "fechaRegistro": "2026-05-30T14:05:32.632Z"
   }
 ]

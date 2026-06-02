@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VITA-SUPPS - Inicio de Sesión</title>
+    <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main class="contenedor-pantalla">
+        <div class="contenedor-logo">
+            <div class="icono-logo"><i class="fa-solid fa-leaf"></i></div>
+            <h1 class="texto-logo">VITA-SUPPS</h1>
+        </div>
+        <div class="tarjeta-login">
+            <h2 class="titulo-login">Inicio de Sesión</h2>
+            <form class="formulario-login">
+                <div class="grupo-formulario">
+                    <label for="login-email" class="etiqueta">Correo Institucional</label>
+                    <div class="contenedor-entrada">
+                        <i class="fa-solid fa-user icono-izquierdo"></i>
+                        <input type="email" id="login-email" class="campo-entrada" placeholder="ejemplo@est.ucab.edu.ve" required>
+                    </div>
+                </div>
+                <div class="grupo-formulario">
+                    <label for="login-password" class="etiqueta">Contraseña</label>
+                    <div class="contenedor-entrada">
+                        <i class="fa-solid fa-lock icono-izquierdo"></i>
+                        <input type="password" id="login-password" class="campo-entrada" placeholder="Contraseña" required>
+                        <i class="fa-regular fa-eye icono-derecho" id="toggle-password" style="cursor:pointer;"></i>
+                    </div>
+                </div>
+                <button type="submit" id="btn-login" class="boton-iniciar">Iniciar Sesión</button>
+            </form>
+            <div class="enlaces-acciones">
+                <a href="registro.html" class="enlace">Registrarse</a>
+                <a href="#" class="enlace">Olvidé mi contraseña</a>
+            </div>
+        </div>
+    </main>
+    <script src="/js/api.js"></script>
+    <script src="/src/repositories/UsuarioRepository.js"></script>
+    <script src="/src/models/UsuarioModel.js"></script>
+    <script src="/src/controllers/UsuarioController.js"></script>
+</body>
+</html>
