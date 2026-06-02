@@ -1,5 +1,5 @@
 /*
-  public/js/api.js — Cliente HTTP único del frontend.
+  frontend/js/api.js — Cliente HTTP único del frontend.
   Reemplaza persistenciaCliente.js. Todo acceso a datos desde el browser
   pasa por api.leer / api.escribir. Cargado como primer <script> en cada vista.
   Se comunica con /api/leer y /api/escribir del servidor.
