@@ -1,5 +1,6 @@
 /*
   src/db.js — Puerto único de acceso a disco (servidor).
+  
   Toda operación de lectura/escritura de archivos JSON pasa por aquí.
   Ningún otro módulo del servidor importa 'fs' directamente.
   Los repositorios del cliente hablan con /api/leer y /api/escribir,

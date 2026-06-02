@@ -5,6 +5,9 @@
   la API REST de persistencia (/api/leer/:archivo, /api/escribir/:archivo).
 
   Es el único proceso Node que corre; db.js es el único módulo que toca disco ********.
+
+Flujo:
+  Controller → Model → Repository → api.js → /api → server.js → db.js → disco
 */
 
 import express from 'express';
@@ -19,9 +22,9 @@ const PORT = 3000;
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
-app.use(express.static(path.join(__dirname, '../front/views')));
-app.use('/styles', express.static(path.join(__dirname, '../front/styles')));
-app.use('/js',     express.static(path.join(__dirname, '../front/js')));
+app.use(express.static(path.join(__dirname, '../frontend/views')));
+app.use('/styles', express.static(path.join(__dirname, '../frontend/styles')));
+app.use('/js',     express.static(path.join(__dirname, '../frontend/js')));
 app.use('/src',    express.static(path.join(__dirname, './src')));
 
 app.get('/api/leer/:archivo', (req, res) => {
