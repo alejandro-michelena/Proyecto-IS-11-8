@@ -6,7 +6,7 @@
 
 class SidebarController {
     #usuarioRepo = new UsuarioRepository();
-
+    
     async init() {
         const sesion = await this.#usuarioRepo.sesion();
         if (!sesion?.id) return location.href = 'index.html';

@@ -34,6 +34,12 @@
       "nombre": "Golden Pro",
       "precio": 20,
       "cantidad": 1
+    },
+    {
+      "id": "prod_007",
+      "nombre": "crealejadrina",
+      "precio": 122,
+      "cantidad": 1
     }
   ],
   "5": []
