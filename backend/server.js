@@ -13,7 +13,7 @@ Flujo:
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { db } from './src/db.js';
+import { db } from './config/db.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -25,7 +25,7 @@ app.use(express.urlencoded({ limit: '50mb', extended: true }));
 app.use(express.static(path.join(__dirname, '../frontend/views')));
 app.use('/styles', express.static(path.join(__dirname, '../frontend/styles')));
 app.use('/js',     express.static(path.join(__dirname, './js')));
-app.use('/src',    express.static(path.join(__dirname, './src')));
+app.use('/config',    express.static(path.join(__dirname, './config')));
 
 app.use('/models',    express.static(path.join(__dirname, './models')));
 app.use('/repositories',    express.static(path.join(__dirname, './repositories')));
