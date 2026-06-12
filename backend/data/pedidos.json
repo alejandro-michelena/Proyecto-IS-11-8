@@ -14,7 +14,7 @@
     "subtotalNeto": 20,
     "iva": 3.2,
     "total": 23.2,
-    "estado": "pendiente",
+    "estado": "completado",
     "metodoPago": "tarjeta",
     "detallesEnvio": {
       "direccion": "Av. Las Palmas 456, Caracas",
@@ -394,6 +394,37 @@
     "detallesEnvio": {
       "direccion": "aaaaaaa",
       "telefono": "04123170007"
+    }
+  },
+  {
+    "id": "PED-1781206426078",
+    "clienteId": 4,
+    "clienteNombre": "Cliente PruebaX",
+    "fecha": "2026-06-11T19:33:46.078Z",
+    "items": [
+      {
+        "idProducto": "prod_001",
+        "nombre": "Golden Pro",
+        "precioUnitario": 20,
+        "cantidad": 1,
+        "subtotal": 20
+      },
+      {
+        "idProducto": "prod_007",
+        "nombre": "crealejadrina",
+        "precioUnitario": 122,
+        "cantidad": 9,
+        "subtotal": 1098
+      }
+    ],
+    "subtotalNeto": 1118,
+    "iva": 178.88,
+    "total": 1296.88,
+    "estado": "pendiente",
+    "metodoPago": "tarjeta",
+    "detallesEnvio": {
+      "direccion": "la casa de lope",
+      "telefono": "04145555555"
     }
   }
 ]

@@ -38,5 +38,13 @@
     "password": "ale123.",
     "rol": "cliente",
     "fechaRegistro": "2026-05-30T14:05:32.632Z"
+  },
+  {
+    "id": 6,
+    "nombre": "Alejandro Michelelena",
+    "email": "alejandromiche@est.ucab.edu.ve",
+    "password": "ale123.",
+    "rol": "cliente",
+    "fechaRegistro": "2026-06-11T18:18:08.365Z"
   }
 ]
