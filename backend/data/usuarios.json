@@ -1,1 +1,50 @@
-[]
+[
+  {
+    "id": 1,
+    "nombre": "Andres Castellanos",
+    "email": "aecastellanos.23@est.ucab.edu.ve",
+    "password": "aecp-2801",
+    "rol": "cliente",
+    "fechaRegistro": "2026-05-27T21:12:45.989Z"
+  },
+  {
+    "id": 2,
+    "nombre": "Diego Rodriguez",
+    "email": "derodriguez.24@est.ucab.edu.ve",
+    "password": "Diego_001",
+    "rol": "cliente",
+    "fechaRegistro": "2026-05-28T00:12:40.561Z"
+  },
+  {
+    "id": 3,
+    "nombre": "Admin1 Michelena",
+    "email": "ahmichelena.24@est.ucab.edu.ve",
+    "password": "ale123.",
+    "rol": "admin",
+    "fechaRegistro": "2026-05-28T00:12:45.561Z"
+  },
+  {
+    "id": 4,
+    "nombre": "Cliente PruebaX",
+    "email": "cliente1@est.ucab.edu.ve",
+    "password": "ale123.",
+    "rol": "cliente",
+    "fechaRegistro": "2026-05-28T18:05:50.386Z"
+  },
+  {
+    "id": 5,
+    "nombre": "Maria Movalles",
+    "email": "mperezpu@ucab.edu.ve",
+    "password": "ale123.",
+    "rol": "cliente",
+    "fechaRegistro": "2026-05-30T14:05:32.632Z"
+  },
+  {
+    "id": 6,
+    "nombre": "Alejandro Michelelena",
+    "email": "alejandromiche@est.ucab.edu.ve",
+    "password": "ale123.",
+    "rol": "cliente",
+    "fechaRegistro": "2026-06-11T18:18:08.365Z"
+  }
+]

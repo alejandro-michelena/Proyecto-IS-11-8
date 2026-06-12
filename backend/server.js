@@ -1,34 +1,46 @@
+/*
+  backend/server.js — Punto de entrada del servidor.
+
+  Configura Express, sirve los archivos estáticos del frontend
+  y registra las rutas del API REST.
+
+  
+  **************
+  Flujo:
+    Html(invoca js) → js(configura eventos de btn, que hacen>) → HTTP /api/* → server(atrapa y va a ) → Routes(llama) → Controllers → Models → Repositories → db.js → disco
+
+    
+CORRER: npm run dev 
+*/
+
 import express from 'express';
-import path from 'path';
-import { PersistenciaJSON } from './helpers/persistenciaJSON.js';
+import path    from 'path';
+import { fileURLToPath } from 'url';
 
-const app = express();
+import usuarioRoutes  from './routes/usuarioRoutes.js';
+import catalogoRoutes from './routes/catalogoRoutes.js';
+import carritoRoutes  from './routes/carritoRoutes.js';
+import pedidoRoutes   from './routes/pedidoRoutes.js';
+import productoRoutes from './routes/productoRoutes.js';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const app  = express();
 const PORT = 3000;
-const persistencia = new PersistenciaJSON();
 
-// permite al servidor entender datos en JSON
-app.use(express.json());
+// ── Middleware ────────────────────────────────────────────────────────────────
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
-// servir los archivos del proyecto (HTML, CSS, JS del cliente)
-app.use(express.static(path.resolve()));
+// ── Archivos estáticos del frontend ──────────────────────────────────────────
+app.use(express.static(path.join(__dirname, '../frontend/views')));
+app.use('/styles', express.static(path.join(__dirname, '../frontend/styles')));
+app.use('/js',     express.static(path.join(__dirname, '../frontend/js')));
 
-// LEER
-app.get('/api/leer/:archivo', (req, res) => {
-    const datos = persistencia.leerArchivo(req.params.archivo);
-    res.json(datos || []); //devuelve el archivo o una lista vacia
-});
+// ── Rutas API REST ────────────────────────────────────────────────────────────
+app.use('/api/usuarios',  usuarioRoutes);
+app.use('/api/catalogo',  catalogoRoutes);
+app.use('/api/carrito',   carritoRoutes);
+app.use('/api/pedidos',   pedidoRoutes);
+app.use('/api/productos', productoRoutes);
 
-// ESCRIBIR
-app.post('/api/escribir/:archivo', (req, res) => {
-    const exito = persistencia.escribirArchivo(req.params.archivo, req.body);
-    if (exito) {
-        res.json({ mensaje: "Guardado con éxito" });
-    } else {
-        res.status(500).json({ error: "Error al escribir en el disco" }); //error interno
-    }
-});
-
-app.listen(PORT, () => {
-    console.log(`\n🚀 Servidor backend corriendo en http://localhost:${PORT}`);
-    console.log(`📂 Conectado a la carpeta física backend/data/\n`);
-});
+app.listen(PORT, () => console.log(`\n🚀  http://localhost:${PORT}\n`));

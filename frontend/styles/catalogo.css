@@ -75,7 +75,7 @@ body {
    ========================================================================== */
 .main-content {
     flex-grow: 1;
-    margin-left: 250px; /* Este margen evita que el menú tape el catálogo */
+    margin-left: 250px;
     padding: 30px;
 }
 
@@ -87,7 +87,6 @@ body {
 
 .titulo-pagina { font-size: 32px; font-weight: 800; margin-bottom: 20px; color: var(--color-texto); }
 
-/* Barra de búsqueda */
 .barra-busqueda { position: relative; margin-bottom: 25px; }
 .icono-busqueda { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: var(--color-icono); }
 .campo-busqueda {
@@ -98,15 +97,13 @@ body {
 }
 .campo-busqueda:focus { border: 1px solid var(--color-primario); }
 
-/* Filtros */
 .filtros-categorias { display: flex; gap: 15px; margin-bottom: 30px; }
 .boton-filtro {
-    padding: 10px 25px; border-radius: 25px; border: 1px solid var(--color-borde);
+    padding: 10px 25px; border-radius: 25px; border: 1px solid #ddd;
     background: white; cursor: pointer; transition: 0.3s; color: var(--color-texto);
 }
 .boton-filtro.activo { background: var(--color-primario); color: white; border: none; }
 
-/* Banner */
 .banner-promocional {
     background: #222; border-radius: 20px; padding: 40px; color: white;
     display: flex; align-items: center; margin-bottom: 40px;
@@ -114,14 +111,12 @@ body {
 .titulo-banner { margin-bottom: 10px; }
 .texto-banner { color: #ccc; font-size: 14px; }
 
-/* Grid */
 .cuadricula-productos {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 25px;
 }
 
-/* Tarjeta */
 .tarjeta-producto {
     background: white; 
     padding: 20px; 
@@ -133,8 +128,8 @@ body {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .tarjeta-producto:hover {
-    transform: translateY(-8px); /* Levanta la tarjeta ligeramente */
-    box-shadow: 0 15px 30px rgba(0,0,0,0.15); /* Crea una sombra más grande y oscura */
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
 }
 
 .boton-favorito { position: absolute; top: 20px; right: 20px; border: none; background: none; font-size: 18px; color: #ccc; cursor: pointer; }
@@ -156,7 +151,6 @@ body {
     align-items: center; 
     justify-content: center; 
     color: #555; 
-    /* Agregamos transición al "pote" para que se acerque suavemente */
     transition: transform 0.3s ease;
 }
 .nombre-producto { font-size: 18px; margin: 10px 0 5px; color: var(--color-texto); }
@@ -172,10 +166,47 @@ body {
 .boton-anadir:hover { background-color: var(--color-primario-oscuro); }
 
 .tarjeta-producto:hover .imagen-simulada {
-    transform: scale(1.1); /* Aumenta el tamaño de la imagen un 10% */
+    transform: scale(1.1);
 }
 
-/* Estilo base del modal carrito (Oculto) */
+/* ==========================================================================
+   ESTILOS DE BOTONES GLOBALES (Integrados)
+   ========================================================================== */
+.btn-app {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.btn-primario {
+    background-color: var(--color-primario);
+    color: white;
+}
+.btn-primario:hover {
+    background-color: var(--color-primario-oscuro);
+    transform: translateY(-2px);
+}
+
+.btn-secundario {
+    background-color: #f1f5f9;
+    color: #475569;
+    border: 1px solid #e2e8f0;
+}
+.btn-secundario:hover {
+    background-color: #e2e8f0;
+    color: #1e293b;
+}
+
+/* ==========================================================================
+   MODAL CARRITO
+   ========================================================================== */
 .modal-carrito-oculto {
     display: none;
     position: fixed;
@@ -183,18 +214,16 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.7); /* Fondo oscuro */
+    background: rgba(0, 0, 0, 0.7);
     z-index: 1000;
     justify-content: center;
     align-items: center;
 }
 
-/* Cuando le quitemos la clase oculto, lo mostramos */
 .modal-carrito-activo {
     display: flex !important;
 }
 
-/* Contenedor del contenido */
 .contenido-modal {
     background: white;
     width: 80%;
@@ -205,7 +234,6 @@ body {
     color: #333;
 }
 
-/* Ajustes rápidos de la tabla */
 .tabla-carrito {
     width: 100%;
     border-collapse: collapse;
@@ -218,7 +246,33 @@ body {
     text-align: left;
 }
 
-/* Estilos de botones del modal */
 .cabecera-modal { display: flex; justify-content: space-between; align-items: center; }
 .boton-cerrar { border: none; background: none; font-size: 24px; cursor: pointer; }
 .pie-modal { margin-top: 20px; text-align: right; }
+
+
+/* Notificaciones flotantes */
+.notificacion-flotante {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #2e7d32; 
+    color: white;
+    padding: 15px 25px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transform: translateY(100px);
+    transition: transform 0.3s ease;
+    z-index: 9999;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.notificacion-flotante.error {
+    background: #d32f2f; /* Rojo de error */
+}
+
+.notificacion-flotante.show {
+    transform: translateY(0);
+}
